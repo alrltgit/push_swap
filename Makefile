@@ -6,7 +6,7 @@
 #    By: apple <apple@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/03 13:11:36 by apple             #+#    #+#              #
-#    Updated: 2025/03/18 22:21:00 by apple            ###   ########.fr        #
+#    Updated: 2025/03/18 23:12:00 by apple            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ RM = rm -f
 SRC = push_swap.c \
 fulfil_list.c \
 argv_validation/argv_is_int.c \
-argv_validation/do_argv_dupl.c
+argv_validation/do_argv_dupl.c \
+argv_validation/argv_is_sorted.c
 
 OBJS = $(SRC:.c=.o)
 

@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_argv_dupl.c                                     :+:      :+:    :+:   */
+/*   ra_rb.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/06 17:54:41 by apple             #+#    #+#             */
-/*   Updated: 2025/03/18 22:42:27 by apple            ###   ########.fr       */
+/*   Created: 2025/03/10 17:23:28 by apple             #+#    #+#             */
+/*   Updated: 2025/03/18 23:22:32 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	do_argvs_duplicate(int argc, char *argv[])
-{
-	int i, k;
-	int num1, num2;
+// void	rotate_a(t_stack *stack_a)
+// {
+// 	while (i < s->a_size - 1)
+// 	{
+// 		stack_a[i] = stack_a[i + 1];
+// 		i++;
+// 	}
+// 	stack_a[s->a_size - 1] = first_num;
+// 	ft_printf("ra\n");
+// }
 
-	i = 1;
-	while (i < argc)
+void	rotate_b(t_size *s, int *stack_b)
+{
+	int	i;
+	int	first_num;
+
+	first_num = stack_b[0];
+	i = 0;
+	while (i < s->b_size - 1)
 	{
-		num1 = ft_atoi(argv[i], NULL); // Convert to int
-		k = i + 1;
-		while (k < argc)
-		{
-			num2 = ft_atoi(argv[k], NULL);
-			if (num1 == num2)
-				return (0);
-			k++;
-		}
+		stack_b[i] = stack_b[i + 1];
 		i++;
 	}
-	return (1);
+	stack_b[s->b_size - 1] = first_num;
+	ft_printf("rb\n");
 }

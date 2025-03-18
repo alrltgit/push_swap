@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   argv_is_not_sorted.c                               :+:      :+:    :+:   */
+/*   argv_is_sorted.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 21:26:20 by apple             #+#    #+#             */
-/*   Updated: 2025/03/11 19:28:22 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/18 23:17:45 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	argv_is_not_sorted(int argc, int *arr)
+int	argv_is_sorted(t_stack *stack)
 {
-	int	i;
+	t_stack	*temp;
 
-	i = 0;
-	while (i < argc - 2)
+	temp = stack;
+	while (temp && temp->next)
 	{
-		if (arr[i] > arr[i + 1])
-			return (1);
-		i++;
+		if (temp->data > temp->next->data)
+			return (0);
+		temp = temp->next;
 	}
-	return (0);
+	return (1);
 }
