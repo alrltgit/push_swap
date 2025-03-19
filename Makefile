@@ -6,7 +6,7 @@
 #    By: apple <apple@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/03 13:11:36 by apple             #+#    #+#              #
-#    Updated: 2025/03/19 09:32:29 by apple            ###   ########.fr        #
+#    Updated: 2025/03/19 12:23:48 by apple            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,9 @@ operations/sa_sb_ss.c \
 operations/pa_pb.c \
 operations/ra_rb.c \
 operations/rra_rrb_rrr.c \
+operations/helpers/helpers.c \
+sort_cases/case_1.c \
+sort_cases/case_2.c \
 sort.c
 
 OBJS = $(SRC:.c=.o)

@@ -6,17 +6,24 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 20:51:55 by apple             #+#    #+#             */
-/*   Updated: 2025/03/18 23:19:31 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/19 11:06:02 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void printf_stack(t_stack *stack_a)
+void printf_stack(t_stack *stack_a, t_stack *stack_b)
 {
     t_stack *temp;
 
     temp = stack_a;
+    while (temp)
+    {
+        ft_printf("%d ", temp->data);
+        temp = temp->next;
+    }
+    ft_printf("\n");
+    temp = stack_b;
     while (temp)
     {
         ft_printf("%d ", temp->data);
@@ -45,7 +52,7 @@ static void	check_error_flag(t_stack *stack, int error_flag)
 int main(int argc, char *argv[])
 {
     t_stack *stack_a;
-    // t_size *s;
+    t_stack *stack_b;
     int i;
     int error_flag;
 
@@ -57,7 +64,7 @@ int main(int argc, char *argv[])
         exit(1);
     }
     stack_a = NULL;
-    // s = malloc(sizeof(t_size));
+    stack_b = NULL;
     error_flag = 0;
     i = 1;
     while (i < argc)
@@ -71,9 +78,9 @@ int main(int argc, char *argv[])
         ft_printf("Error.\n");
         exit(1);
     }
-    // else
-    //     sort();
-    printf_stack(stack_a);
+    else
+        sort(&stack_a, &stack_b);
+    printf_stack(stack_a, stack_b);
     free_stack(stack_a);
     return (0);
 }
