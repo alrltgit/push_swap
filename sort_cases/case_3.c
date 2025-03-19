@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:58:14 by apple             #+#    #+#             */
-/*   Updated: 2025/03/19 17:58:18 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/19 19:04:37 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,28 @@ void find_place_in_b(t_stack **stack_a, t_stack **stack_b)
     len_b = count_stack_size(stack_b);    
     if (len_b == 0)
     {
+        ft_printf("len_b = 0\n");
         push_b(stack_a, stack_b);
         return ;
     }
     current = *stack_b;
     if ((*stack_a)->data > current->data)
     {
+        ft_printf("(*stack_a)->data > current->data\n");
         push_b(stack_a, stack_b);
         return ;
     }
     else if (current->data > (*stack_a)->data)
     {
+        ft_printf("current->data > (*stack_a)->data\n");
         push_b(stack_a, stack_b);
         if (len_b == 3)
             case_1_stack_b(stack_b);
-        // else
-        //     case_2_stack_b(stack_b);
+        else
+        {
+            ft_printf("case_2_stack_b\n");
+            case_2_stack_b(stack_b);
+        }
         return ;
     }
     while (current && current->next)
@@ -44,6 +50,7 @@ void find_place_in_b(t_stack **stack_a, t_stack **stack_b)
         next_node = current->next;
         if ((*stack_a)->data >= current->data && (*stack_a)->data <= next_node->data)
         {
+            ft_printf("(*stack_a)->data >= current->data && (*stack_a)->data <= next_node->data\n");
             while (current != *stack_b)
             {
                 rotate_b(stack_b);
@@ -56,6 +63,7 @@ void find_place_in_b(t_stack **stack_a, t_stack **stack_b)
     }
     if ((*stack_a)->data < current->data)
     {
+        ft_printf("(*stack_a)->data < current->data\n");
         push_b(stack_a, stack_b);
         rotate_b(stack_b);
         return ;
@@ -81,13 +89,14 @@ void case_3(t_stack **stack_a, t_stack **stack_b)
     chunk_size = count_stack_size(stack_a) / 5;
     middle_of_list =count_stack_size(stack_a) / 2;
     chunk = 0;
-    while (chunk <= 5)
+    while (chunk <= 0)
     {
         chunk_min = chunk * chunk_size;
         chunk_max = chunk_min + chunk_size - 1;
 
         int j = chunk_min;
-        while (j < chunk_max)
+        // while (j < chunk_max)
+        while (j < 5)
         {
             
             hold_first = find_hold_first(stack_a, chunk_min, chunk_max);

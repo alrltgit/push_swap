@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:13:22 by apple             #+#    #+#             */
-/*   Updated: 2025/03/19 18:07:57 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/19 20:54:20 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void find_min(t_stack **stack_a, t_stack **stack_b)
         reverse_rotate_a(stack_a);
     push_b(stack_a, stack_b);
 }
+
 void case_2(t_stack **stack_a, t_stack **stack_b)
 {
     find_min(stack_a, stack_b);
@@ -67,26 +68,28 @@ void case_2(t_stack **stack_a, t_stack **stack_b)
 void case_2_stack_b(t_stack **stack_b)
 {
     t_stack *current;
-    int i;
 
     if (!stack_b || !(*stack_b) || !(*stack_b)->next)
-        return;
+        return ;
     current = *stack_b;
-    i = 0;
-    while (current->next && current->data < current->next->data && i < (int)count_stack_size(stack_b))
+    while (current && current->data < current->next->data)
     {
+        // ft_printf("current->data: %d ", current->data);
         swap_b(stack_b);
         rotate_b(stack_b);
-        i++;
+        current = current->next;
     }
     current = *stack_b;
     while (current->next)
         current = current->next;
-    while (current && current->data > (*stack_b)->data)
+    ft_printf("last current->data: %d \n", current->data);
+    while (current)
     {
-        reverse_rotate_b(stack_b);
-        current = *stack_b;
-        while (current->next)
-            current = current->next;
+        ft_printf("current->data: %d \n", current->data);
+        if (current->data > current->prev->data)
+        {
+            reverse_rotate_b(stack_b);
+        }
+        current = current->prev;
     }
 }
