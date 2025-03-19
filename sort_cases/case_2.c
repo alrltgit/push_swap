@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:13:22 by apple             #+#    #+#             */
-/*   Updated: 2025/03/19 13:50:01 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/19 18:07:57 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,22 +64,29 @@ void case_2(t_stack **stack_a, t_stack **stack_b)
         push_a(stack_a, stack_b);
 }
 
-// void case_2_stack_b(t_size *s, int *stack_b)
-// {
-//     int i;
+void case_2_stack_b(t_stack **stack_b)
+{
+    t_stack *current;
+    int i;
 
-//     i = 0;
-//     while (stack_b[0] < stack_b[1] && i <= s->b_size)
-//     {
-//         // ft_printf("stack_b[0]: %d\n", stack_b[0]);
-//         // ft_printf("stack_a[1]: %d\n", stack_b[1]);
-//         swap_b(stack_b);
-//         rotate_b(s, stack_b);
-//         i++;
-//     }
-//     i = s->b_size - 1;
-//     while (stack_b[i] > stack_b[0])
-//     {
-//         reverse_rotate_b(s, stack_b);
-//     }
-// }
+    if (!stack_b || !(*stack_b) || !(*stack_b)->next)
+        return;
+    current = *stack_b;
+    i = 0;
+    while (current->next && current->data < current->next->data && i < (int)count_stack_size(stack_b))
+    {
+        swap_b(stack_b);
+        rotate_b(stack_b);
+        i++;
+    }
+    current = *stack_b;
+    while (current->next)
+        current = current->next;
+    while (current && current->data > (*stack_b)->data)
+    {
+        reverse_rotate_b(stack_b);
+        current = *stack_b;
+        while (current->next)
+            current = current->next;
+    }
+}

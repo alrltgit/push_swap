@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:58:14 by apple             #+#    #+#             */
-/*   Updated: 2025/03/19 15:57:57 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/19 17:58:18 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void find_place_in_b(t_stack **stack_a, t_stack **stack_b)
         push_b(stack_a, stack_b);
         if (len_b == 3)
             case_1_stack_b(stack_b);
-        else
-            case_2_stack_b(stack_b);
+        // else
+        //     case_2_stack_b(stack_b);
         return ;
     }
     while (current && current->next)
@@ -89,6 +89,7 @@ void case_3(t_stack **stack_a, t_stack **stack_b)
         int j = chunk_min;
         while (j < chunk_max)
         {
+            
             hold_first = find_hold_first(stack_a, chunk_min, chunk_max);
             if (!hold_first)
                 break ;
@@ -108,12 +109,13 @@ void case_3(t_stack **stack_a, t_stack **stack_b)
                     hold_second_idx = i;
                 }
                 i++;
+                temp_a = temp_a->next;
             }
             count_to_max = find_count_to_max(stack_a, hold_first_idx, hold_second_idx, middle_of_list);
             count_to_zero = find_count_to_zero(hold_first_idx, hold_second_idx, middle_of_list);
             
             if (hold_first_idx > middle_of_list && hold_second_idx > middle_of_list)
-                nums_in_second_part(stack_a, hold_first_idx, hold_second_idx, stack_a);
+                nums_in_second_part(stack_a, hold_first_idx, hold_second_idx);
             else if (hold_first_idx == hold_second_idx && hold_first_idx > middle_of_list && hold_second_idx > middle_of_list)
                 reverse_rotate_idx(stack_a, hold_second_idx);
             else if (hold_first_idx < middle_of_list && hold_second_idx < middle_of_list)
@@ -131,8 +133,8 @@ void case_3(t_stack **stack_a, t_stack **stack_b)
             else if (hold_first_idx > middle_of_list && hold_second_idx > middle_of_list)
                 reverse_rotate_idx(stack_a, hold_second_idx);
             find_place_in_b(stack_a, stack_b);
+            j++;
         }
-        // ft_printf("chunk: %d\n", chunk);
         chunk++;
     }
 }

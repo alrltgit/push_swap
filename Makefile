@@ -6,7 +6,7 @@
 #    By: apple <apple@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/03 13:11:36 by apple             #+#    #+#              #
-#    Updated: 2025/03/19 12:23:48 by apple            ###   ########.fr        #
+#    Updated: 2025/03/19 17:50:31 by apple            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,9 @@ operations/rra_rrb_rrr.c \
 operations/helpers/helpers.c \
 sort_cases/case_1.c \
 sort_cases/case_2.c \
+sort_cases/case_3.c \
+sort_cases/helpers/case_3_helpers.c \
+sort_cases/helpers/case_3_algorithms.c \
 sort.c
 
 OBJS = $(SRC:.c=.o)

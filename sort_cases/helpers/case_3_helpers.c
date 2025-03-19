@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:56:15 by apple             #+#    #+#             */
-/*   Updated: 2025/03/19 14:15:49 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/19 17:48:55 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int find_count_to_max_1(t_stack **stack_a, int hold_first_idx)
     
     count_to_max_1 = 0;
     temp = hold_first_idx;
-    while (temp < count_stack_size(stack_a))
+    while (temp < (int)count_stack_size(stack_a))
     {
         temp++;
         count_to_max_1++;
@@ -125,7 +125,7 @@ int find_count_to_max_2(t_stack **stack_a, int hold_second_idx)
     
     count_to_max_2 = 0;
     temp = hold_second_idx;
-    while (temp < count_stack_size(stack_a))
+    while (temp < (int)count_stack_size(stack_a))
     {
         temp++;
         count_to_max_2++;
@@ -141,9 +141,8 @@ int find_count_to_max(t_stack **stack_a, int hold_first_idx, int hold_second_idx
     count_to_max = 0;
     if (hold_first_idx > middle_of_list)
     {
-        count_to_max = 0;
         temp = hold_first_idx;
-        while (temp < count_stack_size(stack_a))
+        while (temp < (int)count_stack_size(stack_a))
         {
             temp++;
             count_to_max++;
@@ -151,9 +150,8 @@ int find_count_to_max(t_stack **stack_a, int hold_first_idx, int hold_second_idx
     }
     else if (hold_second_idx > middle_of_list)
     {
-        count_to_max = 0;
         temp = hold_second_idx;
-        while (temp < count_stack_size(stack_a))
+        while (temp < (int)count_stack_size(stack_a))
         {
             temp++;
             count_to_max++;
@@ -172,7 +170,6 @@ void rotate_idx(t_stack **stack_a, int idx)
         rotate_a(stack_a);
         i--;
     }
-    // ft_printf("count_to_zero is optimal\n");
 }
 
 void reverse_rotate_idx(t_stack **stack_a, int idx)
@@ -180,10 +177,10 @@ void reverse_rotate_idx(t_stack **stack_a, int idx)
     int i;
 
     i = idx;
-    while (i < count_stack_size(stack_a))
+    while (i < (int)count_stack_size(stack_a))
     {
         reverse_rotate_a(stack_a);
         i++;
     }
-    // ft_printf("count_to_max is optimal\n");
+
 }
