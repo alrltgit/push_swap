@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:11:21 by apple             #+#    #+#             */
-/*   Updated: 2025/03/19 12:12:01 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/19 14:35:51 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,29 @@ void case_1(t_stack **stack_a)
 }
 
 
-// void case_1_stack_b(t_size *s, int *stack_b)
-// {
-//     if (stack_b[0] < stack_b[1] && stack_b[2] < stack_b[1] && stack_b[2] < stack_b[0])
-//         swap_b(stack_b);
-//     else if (stack_b[0] < stack_b[1] && stack_b[1] < stack_b[2])
-//     {
-//         swap_b(stack_b);
-//         reverse_rotate_b(s, stack_b);
-//     }
-//     else if (stack_b[1] > stack_b[0] && stack_b[1] > stack_b[2])
-//         rotate_b(s, stack_b);
-//     else if (stack_b[1] < stack_b[0] && stack_b[1] < stack_b[2] && stack_b[2] < stack_b[0])
-//     {
-//         swap_b(stack_b);
-//         rotate_b(s, stack_b);
-//     }
-//     else if (stack_b[1] < stack_b[0] && stack_b[1] < stack_b[2] && stack_b[2] > stack_b[0])
-//         reverse_rotate_b(s, stack_b);
-// }
+void case_1_stack_b(t_stack **stack_b)
+{
+    t_stack *first;
+    t_stack *second;
+    t_stack *third;
+
+    first = *stack_b;
+    second = first->next;
+    third = second->next;
+    if (first->data < second->data && third->data < second->data && third->data < first->data)
+        swap_b(stack_b);
+    else if (first->data < stack_b[1] && stack_b[1] < stack_b[2])
+    {
+        swap_b(stack_b);
+        reverse_rotate_b(stack_b);
+    }
+    else if (stack_b[1] > first->data && stack_b[1] > stack_b[2])
+        rotate_b(stack_b);
+    else if (stack_b[1] < first->data && stack_b[1] < stack_b[2] && stack_b[2] < first->data)
+    {
+        swap_b(stack_b);
+        rotate_b(stack_b);
+    }
+    else if (stack_b[1] < first->data && stack_b[1] < stack_b[2] && stack_b[2] > first->data)
+        reverse_rotate_b(stack_b);
+}

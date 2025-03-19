@@ -6,41 +6,39 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:58:14 by apple             #+#    #+#             */
-/*   Updated: 2025/03/18 15:08:52 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/19 14:26:19 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void find_place_in_b(t_size *s, int *stack_a, int **stack_b)
+void find_place_in_b(t_stack **stack_a, t_stack **stack_b)
 {
-    int i;
-    
-    i = 0;
-    while (i <= s->b_size)
+    t_stack *current;
+    t_stack *next_node;
+    size_t len_b;
+
+    len_b = count_stack_size(stack_b);    
+    if (len_b == 0)
     {
-        if (s->b_size == 0)
-        {
-            // ft_printf("s->b_size == 0\n");
-            push_b(s, stack_a, stack_b);
-            return ;
-        }
-        else if (stack_a[0] > (*stack_b)[0])
-        {
-            // ft_printf("stack_a[0] > stack_b[0]\n");
-            push_b(s, stack_a, stack_b);
-            return ;
-        }
-        else if ((*stack_b)[0] > stack_a[0])
-        {
-            // ft_printf("stack_b[0] > stack_a[0]\n");
-            push_b(s, stack_a, stack_b);
-            if (s->b_size == 3)
-                case_1_stack_b(s, *stack_b);
-            else
-                case_2_stack_b(s, *stack_b);
-            return ;
-        }
+        push_b(stack_a, stack_b);
+        return ;
+    }
+    current = *stack_b;
+    if ((*stack_a)->data > current->data)
+    {
+        push_b(stack_a, stack_b);
+        return ;
+    }
+    else if (current->data > (*stack_a)->data)
+    {
+        push_b(stack_a, stack_b);
+        if (len_b == 3)
+            case_1_stack_b(s, *stack_b);
+        else
+            case_2_stack_b(s, *stack_b);
+        return ;
+    }
         else if (stack_a[0] >= (*stack_b)[i] && stack_a[0] <= (*stack_b)[i + 1])
         {
             // ft_printf("stack_a[0] >= stack_b[i] && stack_a[0] <= stack_b[i + 1]\n");
@@ -63,12 +61,12 @@ void find_place_in_b(t_size *s, int *stack_a, int **stack_b)
     }
 }
 
-void case_3(t_size *s, int *stack_a, int **stack_b)
+void case_3(t_stack **stack_a, t_stack **stack_b)
 {
+    t_stack *temp_a;
     int hold_first;
     int hold_second;
     int middle_of_list;
-    int i;
     int hold_first_idx;
     int hold_second_idx;
     int count_to_zero;
@@ -77,9 +75,10 @@ void case_3(t_size *s, int *stack_a, int **stack_b)
     int chunk_min;
     int chunk_max;
     int chunk;
+    int i;
 
-    chunk_size = s->a_size / 5;
-    middle_of_list = s->a_size / 2;
+    chunk_size = count_stack_size(stack_a) / 5;
+    middle_of_list =count_stack_size(stack_a) / 2;
     chunk = 0;
     while (chunk <= 5)
     {
@@ -87,52 +86,50 @@ void case_3(t_size *s, int *stack_a, int **stack_b)
         chunk_max = chunk_min + chunk_size - 1;
 
         int j = chunk_min;
-        // while (j <= 19)
         while (j < chunk_max)
         {
-            hold_first = find_hold_first(s, stack_a, chunk_min, chunk_max);
+            hold_first = find_hold_first(stack_a, chunk_min, chunk_max);
             if (!hold_first)
                 break ;
-            hold_second = find_hold_second(s, stack_a, chunk_min, chunk_max);
+            hold_second = find_hold_second(stack_a, chunk_min, chunk_max);
             if (!hold_second)
                 break ;
             i = 0;
-            while (i < s->a_size)
+            temp_a = *stack_a;
+            while (temp_a)
             {
-                if (stack_a[i] == hold_first)
+                if (temp_a->data == hold_first)
                 {
                     hold_first_idx = i;
-                    // ft_printf("hold_first_idx: %d\n", hold_first_idx);
                 }
-                else if (stack_a[i] == hold_second)
+                else if (temp_a->data == hold_second)
                 {
                     hold_second_idx = i;
-                    // ft_printf("hold_second_idx: %d\n", hold_second_idx);
                 }
                 i++;
             }
-            count_to_max = find_count_to_max(s, hold_first_idx, hold_second_idx, middle_of_list);
+            count_to_max = find_count_to_max(stack_a, hold_first_idx, hold_second_idx, middle_of_list);
             count_to_zero = find_count_to_zero(hold_first_idx, hold_second_idx, middle_of_list);
             
             if (hold_first_idx > middle_of_list && hold_second_idx > middle_of_list)
-                nums_in_second_part(s, hold_first_idx, hold_second_idx, stack_a);
+                nums_in_second_part(stack_a, hold_first_idx, hold_second_idx, stack_a);
             else if (hold_first_idx == hold_second_idx && hold_first_idx > middle_of_list && hold_second_idx > middle_of_list)
-                reverse_rotate_idx(s, stack_a, hold_second_idx);
+                reverse_rotate_idx(stack_a, hold_second_idx);
             else if (hold_first_idx < middle_of_list && hold_second_idx < middle_of_list)
-                nums_in_first_part(s, hold_first_idx, hold_second_idx, stack_a);
+                nums_in_first_part(stack_a, hold_first_idx, hold_second_idx);
             else if (hold_first_idx == hold_second_idx && hold_first_idx < middle_of_list && hold_second_idx < middle_of_list)
-                rotate_idx(s, stack_a, hold_first_idx);
+                rotate_idx(stack_a, hold_first_idx);
             else if (count_to_zero < count_to_max && hold_first_idx < middle_of_list)
-                rotate_idx(s, stack_a, hold_first_idx);
+                rotate_idx(stack_a, hold_first_idx);
             else if (count_to_zero < count_to_max && hold_second_idx < middle_of_list)
-                rotate_idx(s, stack_a, hold_second_idx);
+                rotate_idx(stack_a, hold_second_idx);
             else if (count_to_zero > count_to_max && hold_first_idx > middle_of_list)
-                reverse_rotate_idx(s, stack_a, hold_first_idx);
+                reverse_rotate_idx(stack_a, hold_first_idx);
             else if (count_to_zero > count_to_max && hold_second_idx > middle_of_list)
-                reverse_rotate_idx(s, stack_a, hold_second_idx);
+                reverse_rotate_idx(stack_a, hold_second_idx);
             else if (hold_first_idx > middle_of_list && hold_second_idx > middle_of_list)
-                reverse_rotate_idx(s, stack_a, hold_second_idx);
-            find_place_in_b(s, stack_a, stack_b);
+                reverse_rotate_idx(stack_a, hold_second_idx);
+            find_place_in_b(stack_a, stack_b);
         }
         // ft_printf("chunk: %d\n", chunk);
         chunk++;

@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:13:22 by apple             #+#    #+#             */
-/*   Updated: 2025/03/19 12:26:29 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/19 13:50:01 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void find_min(t_stack **stack_a, t_stack **stack_b)
     min_node = *stack_a;
     find_idx = 0;
     i = 0;
-    if (!stack_a || !*stack_b)
+    if (!stack_a)
         return ;
     while (temp)
     {
@@ -56,7 +56,6 @@ static void find_min(t_stack **stack_a, t_stack **stack_b)
 void case_2(t_stack **stack_a, t_stack **stack_b)
 {
     find_min(stack_a, stack_b);
-    ft_printf("stack_size: %d\n", count_stack_size(stack_a));
     if (count_stack_size(stack_a) == 4)
         find_min(stack_a, stack_b);
     case_1(stack_a);
