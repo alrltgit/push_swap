@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 20:51:55 by apple             #+#    #+#             */
-/*   Updated: 2025/03/19 11:06:02 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/19 16:05:29 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ void printf_stack(t_stack *stack_a, t_stack *stack_b)
     t_stack *temp;
 
     temp = stack_a;
+    ft_printf("stack_a: \n");
     while (temp)
     {
         ft_printf("%d ", temp->data);
         temp = temp->next;
     }
     ft_printf("\n");
+    ft_printf("stack_b: \n");
     temp = stack_b;
     while (temp)
     {

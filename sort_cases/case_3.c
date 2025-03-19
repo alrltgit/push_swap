@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:58:14 by apple             #+#    #+#             */
-/*   Updated: 2025/03/19 14:26:19 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/19 15:57:57 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,31 @@ void find_place_in_b(t_stack **stack_a, t_stack **stack_b)
     {
         push_b(stack_a, stack_b);
         if (len_b == 3)
-            case_1_stack_b(s, *stack_b);
+            case_1_stack_b(stack_b);
         else
-            case_2_stack_b(s, *stack_b);
+            case_2_stack_b(stack_b);
         return ;
     }
-        else if (stack_a[0] >= (*stack_b)[i] && stack_a[0] <= (*stack_b)[i + 1])
+    while (current && current->next)
+    {
+        next_node = current->next;
+        if ((*stack_a)->data >= current->data && (*stack_a)->data <= next_node->data)
         {
-            // ft_printf("stack_a[0] >= stack_b[i] && stack_a[0] <= stack_b[i + 1]\n");
-            while (i > 0)
+            while (current != *stack_b)
             {
-                rotate_b(s, *stack_b);
-                i--;
+                rotate_b(stack_b);
+                current = *stack_b;
             }
-            push_b(s, stack_a, stack_b);
+            push_b(stack_a, stack_b);
             return ;
         }
-        else if (stack_a[0] < (*stack_b)[s->b_size])
-        {
-            // ft_printf("stack_b[0] < stack_b[s->b_size]\n");
-            push_b(s, stack_a, stack_b);
-            rotate_b(s, *stack_b);
-            return ;
-        }
-        i++;
+        current = current->next;
+    }
+    if ((*stack_a)->data < current->data)
+    {
+        push_b(stack_a, stack_b);
+        rotate_b(stack_b);
+        return ;
     }
 }
 

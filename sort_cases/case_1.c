@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:11:21 by apple             #+#    #+#             */
-/*   Updated: 2025/03/19 14:35:51 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/19 16:03:26 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,18 @@ void case_1_stack_b(t_stack **stack_b)
     third = second->next;
     if (first->data < second->data && third->data < second->data && third->data < first->data)
         swap_b(stack_b);
-    else if (first->data < stack_b[1] && stack_b[1] < stack_b[2])
+    else if (first->data < second->data && second->data < third->data)
     {
         swap_b(stack_b);
         reverse_rotate_b(stack_b);
     }
-    else if (stack_b[1] > first->data && stack_b[1] > stack_b[2])
+    else if (second->data > first->data && second->data > third->data)
         rotate_b(stack_b);
-    else if (stack_b[1] < first->data && stack_b[1] < stack_b[2] && stack_b[2] < first->data)
+    else if (second->data < first->data && second->data < third->data && third->data < first->data)
     {
         swap_b(stack_b);
         rotate_b(stack_b);
     }
-    else if (stack_b[1] < first->data && stack_b[1] < stack_b[2] && stack_b[2] > first->data)
+    else if (second->data < first->data && second->data < third->data && third->data > first->data)
         reverse_rotate_b(stack_b);
 }
