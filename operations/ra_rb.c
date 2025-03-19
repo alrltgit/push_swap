@@ -6,35 +6,46 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:23:28 by apple             #+#    #+#             */
-/*   Updated: 2025/03/18 23:22:32 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/19 09:11:57 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-// void	rotate_a(t_stack *stack_a)
-// {
-// 	while (i < s->a_size - 1)
-// 	{
-// 		stack_a[i] = stack_a[i + 1];
-// 		i++;
-// 	}
-// 	stack_a[s->a_size - 1] = first_num;
-// 	ft_printf("ra\n");
-// }
-
-void	rotate_b(t_size *s, int *stack_b)
+void	rotate_a(t_stack **stack_a)
 {
-	int	i;
-	int	first_num;
+	t_stack *first;
+	t_stack *last;
 
-	first_num = stack_b[0];
-	i = 0;
-	while (i < s->b_size - 1)
-	{
-		stack_b[i] = stack_b[i + 1];
-		i++;
-	}
-	stack_b[s->b_size - 1] = first_num;
+	if (!stack_a || !*stack_a || !(*stack_a)->next)
+		return ;
+	first = *stack_a;
+	last = *stack_a;
+	while (last->next)
+		last = last->next;
+	*stack_a = first->next;
+	(*stack_a)->prev = NULL;
+	last->next = first;
+	first->prev = last;
+	first->next = NULL;
+	ft_printf("ra\n");
+}
+
+void	rotate_b(t_stack **stack_b)
+{
+	t_stack *first;
+	t_stack *last;
+
+	if (!stack_b || !*stack_b || !(*stack_b)->next)
+		return ;
+	first = *stack_b;
+	last = *stack_b;
+	while (last->next)
+		last = last->next;
+	*stack_b = first->next;
+	(*stack_b)->prev = NULL;
+	last->next = first;
+	first->prev = last;
+	first->next = NULL;
 	ft_printf("rb\n");
 }

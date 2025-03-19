@@ -3,45 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   sa_sb_ss.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:49:46 by apple             #+#    #+#             */
-/*   Updated: 2025/03/11 13:48:33 by alraltse         ###   ########.fr       */
+/*   Updated: 2025/03/19 09:31:27 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	swap_a(int *stack_a)
+void	swap_a(t_stack **stack_a)
 {
-	int	temp;
+	t_stack *first;
+	t_stack *second;
+	int temp;
 
-	temp = stack_a[0];
-	stack_a[0] = stack_a[1];
-	stack_a[1] = temp;
+	if (!stack_a || !*stack_a || !(*stack_a)->next)
+		return ;
+	first = *stack_a;
+	second = first->next;
+	temp = first->data;
+	first->data = second->data;
+	second->data = temp;
 	ft_printf("sa\n");
 }
 
-void	swap_b(int *stack_b)
+void	swap_b(t_stack **stack_b)
 {
-	int	temp;
+	t_stack *first;
+	t_stack *second;
+	int temp;
 
-	temp = stack_b[0];
-	stack_b[0] = stack_b[1];
-	stack_b[1] = temp;
+	if (!stack_b || !*stack_b || !(*stack_b)->next)
+		return ;
+	first = *stack_b;
+	second = first->next;
+	temp = first->data;
+	first->data = second->data;
+	second->data = temp;
 	ft_printf("sb\n");
 }
 
-void	sa_sb(int *stack_a, int *stack_b)
+void	sa_sb(t_stack **stack_a, t_stack **stack_b)
 {
-	int	temp_1;
-	int	temp_2;
-
-	temp_1 = stack_a[0];
-	stack_a[0] = stack_a[1];
-	stack_a[1] = temp_1;
-	temp_2 = stack_b[0];
-	stack_b[0] = stack_b[1];
-	stack_b[1] = temp_2;
+	swap_a(stack_a);
+	swap_b(stack_b);
 	ft_printf("ss\n");
 }

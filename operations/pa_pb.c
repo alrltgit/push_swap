@@ -6,46 +6,42 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:54:52 by apple             #+#    #+#             */
-/*   Updated: 2025/03/16 17:27:33 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/19 09:27:59 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	push_a(t_size *s, int **stack_a, int **stack_b)
+void	push_a(t_stack **stack_a, t_stack **stack_b)
 {
-	int	i;
-	int *stack_a_temp;
-	int *stack_b_temp;
+	t_stack *temp;
 
-	stack_a_temp = realloc(*stack_a, sizeof(int) * (s->a_size + 1));
-	if (!stack_a_temp)
-	{
-		ft_printf("Memory wasn't allocated.\n");
+	if (!stack_b || !*stack_b)
 		return ;
-	}
-	*stack_a = stack_a_temp;
-	i = s->a_size;
-	while (i > 0)
-	{
-		(*stack_a)[i] = (*stack_a)[i - 1];
-		i--;
-	}
-	(*stack_a)[0] = (*stack_b)[0];
-	stack_b_temp = realloc(*stack_b, sizeof(int) * (s->b_size - 1));
-	if (!stack_b_temp)
-	{
-		ft_printf("Memory wasn't allocated.\n");
+	temp = *stack_b;
+	*stack_b = (*stack_b)->next;
+	if (*stack_b)
+		(*stack_b)->prev = NULL;
+	temp->next = *stack_a;
+	if (*stack_a)
+		(*stack_a)->prev = temp;
+	*stack_a = temp;
+	ft_printf("pa\n");
+}
+
+void	push_b(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack *temp;
+
+	if (!stack_a || !*stack_a)
 		return ;
-	}
-	*stack_b = stack_b_temp;
-	i = 0;
-	while (i < s->b_size)
-	{
-		(*stack_b)[i] = (*stack_b)[i + 1];
-		i++;
-	}
-	s->a_size++;
-	s->b_size--;
+	temp = *stack_a;
+	*stack_a = (*stack_a)->next;
+	if (*stack_a)
+		(*stack_a)->prev = NULL;
+	temp->next = *stack_b;
+	if (*stack_b)
+		(*stack_b)->prev = temp;
+	*stack_b = temp;
 	ft_printf("pa\n");
 }
