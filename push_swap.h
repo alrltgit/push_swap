@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:11:44 by apple             #+#    #+#             */
-/*   Updated: 2025/03/21 13:54:57 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/21 17:00:09 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,10 @@ void    case_3(t_size *s, t_stack **stack_a, t_stack **stack_b);
 
 int find_hold_first(t_stack **stack_a, int chunk_min, int chunk_max);
 int find_hold_second(t_stack **stack_a, int chunk_min, int chunk_max);
-int find_count_to_zero_1(int hold_first_idx);
-int find_count_to_zero_2(int hold_second_idx);
-int find_count_to_zero(int hold_first_idx, int hold_second_idx, int middle_of_list);
-int find_count_to_max_1(t_stack **stack_a, int hold_first_idx);
-int find_count_to_max_2(t_stack **stack_a, int hold_second_idx);
-int find_count_to_max(t_stack **stack_a, int hold_first_idx, int hold_second_idx, int middle_of_list);
+int find_count_to_zero(int hold_first_idx);
+int find_count_to_max(t_size *s, int hold_second_idx);
 void rotate_idx(t_stack **stack_a, int idx);
-void reverse_rotate_idx(t_stack **stack_a, int idx);
-void nums_in_second_part(t_stack **stack_a, int hold_first_idx, int hold_second_idx);
-void nums_in_first_part(t_stack **stack_a, int hold_first_idx, int hold_second_idx);
+void reverse_rotate_idx(t_size *s, t_stack **stack_a, int idx);
 void case_1_stack_b(t_stack **stack_b);
 void case_2_stack_b(t_stack **stack_b);
 

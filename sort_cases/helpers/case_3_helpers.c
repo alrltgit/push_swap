@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:56:15 by apple             #+#    #+#             */
-/*   Updated: 2025/03/19 17:48:55 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/21 17:00:38 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int find_hold_second(t_stack **stack_a, int chunk_min, int chunk_max)
     int hold_second;
     int len;
     int i;
-    
+
     temp = *stack_a;
     len = 0;
     while (temp)
@@ -65,97 +65,27 @@ int find_hold_second(t_stack **stack_a, int chunk_min, int chunk_max)
     return(hold_second);
 }
 
-int find_count_to_zero_1(int hold_first_idx)
-{
-    int count_to_zero_1;
-
-    count_to_zero_1 = 0;
-    while (count_to_zero_1 < hold_first_idx)
-        count_to_zero_1++;
-    return (count_to_zero_1);
-}
-
-int find_count_to_zero_2(int hold_second_idx)
-{
-    int count_to_zero_2;
-
-    count_to_zero_2 = 0;
-    while (count_to_zero_2 < hold_second_idx)
-        count_to_zero_2++;
-    return (count_to_zero_2);
-}
-
-int find_count_to_zero(int hold_first_idx, int hold_second_idx, int middle_of_list)
+int find_count_to_zero(int hold_first_idx)
 {
     int count_to_zero;
     
     count_to_zero = 0;
-    if (hold_first_idx < middle_of_list)
-    {
-        while (count_to_zero < hold_first_idx)
-            count_to_zero++;
-    }
-    else if (hold_second_idx < middle_of_list)
-    {
-        while (count_to_zero < hold_second_idx)
-            count_to_zero++;
-    }
+    while (count_to_zero < hold_first_idx)
+        count_to_zero++;
     return (count_to_zero);
 }
 
-int find_count_to_max_1(t_stack **stack_a, int hold_first_idx)
-{
-    int count_to_max_1;
-    int temp;
-    
-    count_to_max_1 = 0;
-    temp = hold_first_idx;
-    while (temp < (int)count_stack_size(stack_a))
-    {
-        temp++;
-        count_to_max_1++;
-    }
-    return (count_to_max_1);
-}
-
-int find_count_to_max_2(t_stack **stack_a, int hold_second_idx)
-{
-    int temp;
-    int count_to_max_2;
-    
-    count_to_max_2 = 0;
-    temp = hold_second_idx;
-    while (temp < (int)count_stack_size(stack_a))
-    {
-        temp++;
-        count_to_max_2++;
-    }
-    return (count_to_max_2);
-}
-
-int find_count_to_max(t_stack **stack_a, int hold_first_idx, int hold_second_idx, int middle_of_list)
+int find_count_to_max(t_size *s, int hold_second_idx)
 {
     int count_to_max;
     int temp;
 
     count_to_max = 0;
-    if (hold_first_idx > middle_of_list)
+    temp = hold_second_idx;
+    while (temp < s->a_size)
     {
-        temp = hold_first_idx;
-        while (temp < (int)count_stack_size(stack_a))
-        {
-            temp++;
-            count_to_max++;
-        }
-    }
-    else if (hold_second_idx > middle_of_list)
-    {
-        temp = hold_second_idx;
-        while (temp < (int)count_stack_size(stack_a))
-        {
-            temp++;
-            count_to_max++;
-        }
+        temp++;
+        count_to_max++;
     }
     return (count_to_max);
 }
@@ -172,15 +102,14 @@ void rotate_idx(t_stack **stack_a, int idx)
     }
 }
 
-void reverse_rotate_idx(t_stack **stack_a, int idx)
+void reverse_rotate_idx(t_size *s, t_stack **stack_a, int idx)
 {
     int i;
 
     i = idx;
-    while (i < (int)count_stack_size(stack_a))
+    while (i < s->a_size)
     {
         reverse_rotate_a(stack_a);
         i++;
     }
-
 }

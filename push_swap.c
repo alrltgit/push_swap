@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 20:51:55 by apple             #+#    #+#             */
-/*   Updated: 2025/03/21 13:57:02 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/21 17:13:42 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
         exit(1);
     }
     s = malloc(sizeof(int));
-    s->a_size = argc;
+    s->a_size = argc - 1;
     s->b_size = 0;
     stack_a = NULL;
     stack_b = NULL;
