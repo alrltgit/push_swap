@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 20:51:55 by apple             #+#    #+#             */
-/*   Updated: 2025/03/19 16:05:29 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/21 13:57:02 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int main(int argc, char *argv[])
 {
     t_stack *stack_a;
     t_stack *stack_b;
+    t_size *s;
     int i;
     int error_flag;
 
@@ -65,6 +66,9 @@ int main(int argc, char *argv[])
         ft_printf("Error.\n");
         exit(1);
     }
+    s = malloc(sizeof(int));
+    s->a_size = argc;
+    s->b_size = 0;
     stack_a = NULL;
     stack_b = NULL;
     error_flag = 0;
@@ -81,8 +85,12 @@ int main(int argc, char *argv[])
         exit(1);
     }
     else
-        sort(&stack_a, &stack_b);
+        sort(s, &stack_a, &stack_b);
     printf_stack(stack_a, stack_b);
+    if (stack_b_is_sorted(&stack_b))
+        ft_printf("Stack_b is sorted.\n");
+    else
+        ft_printf("Stack_b is not sorted.\n");
     free_stack(stack_a);
     return (0);
 }

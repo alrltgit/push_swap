@@ -6,13 +6,13 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:13:22 by apple             #+#    #+#             */
-/*   Updated: 2025/03/19 20:54:20 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/21 12:56:33 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void find_min(t_stack **stack_a, t_stack **stack_b)
+static void find_min(t_size *s, t_stack **stack_a, t_stack **stack_b)
 {
     t_stack *temp;
     t_stack *min_node;
@@ -51,18 +51,18 @@ static void find_min(t_stack **stack_a, t_stack **stack_b)
         reverse_rotate_a(stack_a);
     else if (find_idx == 4 && count_stack_size(stack_a) == 5)
         reverse_rotate_a(stack_a);
-    push_b(stack_a, stack_b);
+    push_b(s, stack_a, stack_b);
 }
 
-void case_2(t_stack **stack_a, t_stack **stack_b)
+void case_2(t_size *s, t_stack **stack_a, t_stack **stack_b)
 {
-    find_min(stack_a, stack_b);
+    find_min(s, stack_a, stack_b);
     if (count_stack_size(stack_a) == 4)
-        find_min(stack_a, stack_b);
+        find_min(s, stack_a, stack_b);
     case_1(stack_a);
-    push_a(stack_a, stack_b);
+    push_a(s, stack_a, stack_b);
     if (count_stack_size(stack_a) == 4 && *stack_b)
-        push_a(stack_a, stack_b);
+        push_a(s, stack_a, stack_b);
 }
 
 void case_2_stack_b(t_stack **stack_b)

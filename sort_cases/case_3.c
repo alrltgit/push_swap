@@ -6,71 +6,102 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:58:14 by apple             #+#    #+#             */
-/*   Updated: 2025/03/19 19:04:37 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/21 14:06:29 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void find_place_in_b(t_stack **stack_a, t_stack **stack_b)
+t_stack *next_num(t_stack **stack)
 {
-    t_stack *current;
-    t_stack *next_node;
-    size_t len_b;
+    t_stack *temp;
 
-    len_b = count_stack_size(stack_b);    
-    if (len_b == 0)
+    temp = *stack;
+    while (temp->next)
+        temp = temp->next;
+    return (temp);
+}
+
+int stack_b_is_sorted(t_stack **stack)
+{
+    t_stack	*temp;
+
+	temp = *stack;
+	while (temp && temp->next)
+	{
+		if (temp->data < temp->next->data)
+			return (0);
+		temp = temp->next;
+	}
+	return (1);
+}
+
+void find_place_in_b(t_size *s, t_stack **stack_a, t_stack **stack_b)
+{
+    t_stack *current_a;
+    t_stack *current_b;
+
+    if (s->b_size == 0)
     {
-        ft_printf("len_b = 0\n");
-        push_b(stack_a, stack_b);
+        // ft_printf("len_b = 0\n");
+        push_b(s, stack_a, stack_b);
         return ;
     }
-    current = *stack_b;
-    if ((*stack_a)->data > current->data)
+    current_a = *stack_a;
+    current_b = *stack_b;
+    if (current_a->data > current_b->data)
     {
-        ft_printf("(*stack_a)->data > current->data\n");
-        push_b(stack_a, stack_b);
+        // ft_printf("(*stack_a)->data > current->data\n");
+        push_b(s, stack_a, stack_b);
         return ;
     }
-    else if (current->data > (*stack_a)->data)
+    else if (current_a->data < next_num(stack_b)->data)
     {
-        ft_printf("current->data > (*stack_a)->data\n");
-        push_b(stack_a, stack_b);
-        if (len_b == 3)
-            case_1_stack_b(stack_b);
+        push_b(s, stack_a, stack_b);
+        rotate_b(stack_b);
+    }
+    else if (current_a->data < current_b->data)
+    {
+        current_b = *stack_b;
+        while (current_b && !(current_a->data < current_b->data && current_a->data > current_b->next->data))
+        {
+            // ft_printf("current_b->data: %d\n", current_b->data);
+            // ft_printf("current_a->data: %d\n", current_a->data);
+            // ft_printf("current_b->next->data: %d\n", current_b->next->data);
+            rotate_b(stack_b);
+            current_b = *stack_b;
+        }
+        push_b(s, stack_a, stack_b);
+        swap_b(stack_b);
+        if (stack_b_is_sorted(stack_b))
+            return ;
         else
         {
-            ft_printf("case_2_stack_b\n");
-            case_2_stack_b(stack_b);
-        }
-        return ;
-    }
-    while (current && current->next)
-    {
-        next_node = current->next;
-        if ((*stack_a)->data >= current->data && (*stack_a)->data <= next_node->data)
-        {
-            ft_printf("(*stack_a)->data >= current->data && (*stack_a)->data <= next_node->data\n");
-            while (current != *stack_b)
+            current_b = *stack_b;
+            while (current_b->next)
             {
-                rotate_b(stack_b);
-                current = *stack_b;
+                current_b = current_b->next;
             }
-            push_b(stack_a, stack_b);
-            return ;
+            // ft_printf("current_b->data last: %d\n", current_b->data);
+            // ft_printf("current_b->prev->data last: %d\n", current_b->prev->data);
+            // printf_stack(*stack_a, *stack_b);
+            while (current_b && current_b->data < current_b->prev->data)
+            {
+                // ft_printf("current_b->next last: %d\n", current_b->data);
+                reverse_rotate_b(stack_b);
+                current_b = next_num(stack_b);
+                // ft_printf("current_b->data: %d\n", current_b->data);
+            }
+            if (current_b->data > current_b->prev->data)
+            {
+                reverse_rotate_b(stack_b);
+            }
         }
-        current = current->next;
-    }
-    if ((*stack_a)->data < current->data)
-    {
-        ft_printf("(*stack_a)->data < current->data\n");
-        push_b(stack_a, stack_b);
-        rotate_b(stack_b);
         return ;
     }
 }
 
-void case_3(t_stack **stack_a, t_stack **stack_b)
+void case_3(t_size *s, t_stack **stack_a, t_stack **stack_b)
 {
     t_stack *temp_a;
     int hold_first;
@@ -86,24 +117,25 @@ void case_3(t_stack **stack_a, t_stack **stack_b)
     int chunk;
     int i;
 
+    (void)s;
+    (void)stack_b;
     chunk_size = count_stack_size(stack_a) / 5;
-    middle_of_list =count_stack_size(stack_a) / 2;
+    middle_of_list = count_stack_size(stack_a) / 2;
     chunk = 0;
-    while (chunk <= 0)
+    while (chunk < 5)
     {
         chunk_min = chunk * chunk_size;
         chunk_max = chunk_min + chunk_size - 1;
 
         int j = chunk_min;
-        // while (j < chunk_max)
-        while (j < 5)
+        while (j <= chunk_max)
+        // while (j < 43)
         {
-            
             hold_first = find_hold_first(stack_a, chunk_min, chunk_max);
-            if (!hold_first)
-                break ;
+            // ft_printf("hold_first: %d\n", hold_first);
+            // ft_printf("hold_second: %d\n", hold_second);
             hold_second = find_hold_second(stack_a, chunk_min, chunk_max);
-            if (!hold_second)
+            if (!hold_first || !hold_second)
                 break ;
             i = 0;
             temp_a = *stack_a;
@@ -141,9 +173,13 @@ void case_3(t_stack **stack_a, t_stack **stack_b)
                 reverse_rotate_idx(stack_a, hold_second_idx);
             else if (hold_first_idx > middle_of_list && hold_second_idx > middle_of_list)
                 reverse_rotate_idx(stack_a, hold_second_idx);
-            find_place_in_b(stack_a, stack_b);
+            find_place_in_b(s, stack_a, stack_b);
             j++;
         }
+        ft_printf("chunk: %d\n", chunk);
+        ft_printf("chunk_size: %d\n", chunk_size);
+        ft_printf("chunk_min: %d\n", chunk_min);
+        ft_printf("chunk_max: %d\n", chunk_max);
         chunk++;
     }
 }

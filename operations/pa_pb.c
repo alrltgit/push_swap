@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pa.c                                               :+:      :+:    :+:   */
+/*   pa_pb.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:54:52 by apple             #+#    #+#             */
-/*   Updated: 2025/03/19 09:27:59 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/21 11:44:36 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	push_a(t_stack **stack_a, t_stack **stack_b)
+void	push_a(t_size *s, t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack *temp;
 
@@ -26,10 +26,12 @@ void	push_a(t_stack **stack_a, t_stack **stack_b)
 	if (*stack_a)
 		(*stack_a)->prev = temp;
 	*stack_a = temp;
+	s->a_size++;
+	s->b_size--;
 	ft_printf("pa\n");
 }
 
-void	push_b(t_stack **stack_a, t_stack **stack_b)
+void	push_b(t_size *s, t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack *temp;
 
@@ -43,5 +45,7 @@ void	push_b(t_stack **stack_a, t_stack **stack_b)
 	if (*stack_b)
 		(*stack_b)->prev = temp;
 	*stack_b = temp;
-	ft_printf("pa\n");
+	s->b_size++;
+	s->a_size--;
+	ft_printf("pb\n");
 }
