@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:11:44 by apple             #+#    #+#             */
-/*   Updated: 2025/03/21 17:00:09 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/21 17:37:06 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void    sort(t_size *s, t_stack **stack_a, t_stack **stack_b);
 void    case_1(t_stack **stack_a);
 void    case_2(t_size *s, t_stack **stack_a, t_stack **stack_b);
 void    case_3(t_size *s, t_stack **stack_a, t_stack **stack_b);
+void    case_4(t_size *s, t_stack **stack_a, t_stack **stack_b);
 
 int find_hold_first(t_stack **stack_a, int chunk_min, int chunk_max);
 int find_hold_second(t_stack **stack_a, int chunk_min, int chunk_max);
@@ -64,7 +65,5 @@ int find_count_to_zero(int hold_first_idx);
 int find_count_to_max(t_size *s, int hold_second_idx);
 void rotate_idx(t_stack **stack_a, int idx);
 void reverse_rotate_idx(t_size *s, t_stack **stack_a, int idx);
-void case_1_stack_b(t_stack **stack_b);
-void case_2_stack_b(t_stack **stack_b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:58:14 by apple             #+#    #+#             */
-/*   Updated: 2025/03/21 16:59:59 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/21 17:31:05 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,14 @@ void case_3(t_size *s, t_stack **stack_a, t_stack **stack_b)
         {
             hold_first = find_hold_first(stack_a, chunk_min, chunk_max);
             hold_second = find_hold_second(stack_a, chunk_min, chunk_max);
-            if (!hold_first || !hold_second)
+            if (!hold_first)
             {
-                ft_printf("break.\n");
+                ft_printf("break first.\n");
+                break ;
+            }
+            if (!hold_second)
+            {
+                ft_printf("break second.\n");
                 break ;
             }
             i = 0;

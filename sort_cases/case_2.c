@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:13:22 by apple             #+#    #+#             */
-/*   Updated: 2025/03/21 12:56:33 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/21 17:37:00 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,33 +63,4 @@ void case_2(t_size *s, t_stack **stack_a, t_stack **stack_b)
     push_a(s, stack_a, stack_b);
     if (count_stack_size(stack_a) == 4 && *stack_b)
         push_a(s, stack_a, stack_b);
-}
-
-void case_2_stack_b(t_stack **stack_b)
-{
-    t_stack *current;
-
-    if (!stack_b || !(*stack_b) || !(*stack_b)->next)
-        return ;
-    current = *stack_b;
-    while (current && current->data < current->next->data)
-    {
-        // ft_printf("current->data: %d ", current->data);
-        swap_b(stack_b);
-        rotate_b(stack_b);
-        current = current->next;
-    }
-    current = *stack_b;
-    while (current->next)
-        current = current->next;
-    ft_printf("last current->data: %d \n", current->data);
-    while (current)
-    {
-        ft_printf("current->data: %d \n", current->data);
-        if (current->data > current->prev->data)
-        {
-            reverse_rotate_b(stack_b);
-        }
-        current = current->prev;
-    }
 }

@@ -6,7 +6,7 @@
 #    By: apple <apple@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/03 13:11:36 by apple             #+#    #+#              #
-#    Updated: 2025/03/21 17:00:57 by apple            ###   ########.fr        #
+#    Updated: 2025/03/21 18:10:03 by apple            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ operations/helpers/helpers.c \
 sort_cases/case_1.c \
 sort_cases/case_2.c \
 sort_cases/case_3.c \
+sort_cases/case_4.c \
 sort_cases/helpers/case_3_helpers.c \
 sort.c
 
