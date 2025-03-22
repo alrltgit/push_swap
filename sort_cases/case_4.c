@@ -6,13 +6,13 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 17:35:05 by apple             #+#    #+#             */
-/*   Updated: 2025/03/22 19:11:57 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/22 19:43:44 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int find_lowest_first(t_stack **stack_a)
+int find_lowest(t_stack **stack_a)
 {
     t_stack *temp;
     int hold_first;
@@ -61,7 +61,7 @@ void case_4(t_size *s, t_stack **stack_a, t_stack **stack_b)
     int num_chunks;
     long chunk_size;
     t_stack *temp;
-    int lowest_first_idx = 0;
+    int lowest_idx = 0;
     int lowest_to_max;
     int lowest_to_zero;
     
@@ -70,8 +70,16 @@ void case_4(t_size *s, t_stack **stack_a, t_stack **stack_b)
         num_chunks = 2;
     else if (s->a_size <= 50)
         num_chunks = 4;
-    else if (s->a_size <= 99)
+    else if (s->a_size <= 100)
         num_chunks = 5;
+    else if (s->a_size <= 200)
+        num_chunks = 8;
+    else if (s->a_size <= 300)
+        num_chunks = 10;
+    else if (s->a_size <= 400)
+        num_chunks = 12;
+    else
+        num_chunks = 15;
 
     chunk_size = s->a_size / num_chunks;
     chunk = 0;
@@ -82,8 +90,8 @@ void case_4(t_size *s, t_stack **stack_a, t_stack **stack_b)
         int j = min;
         while (j <= max)
         {
-            int lowest_first = find_lowest_first(stack_a);
-            if (!lowest_first)
+            int lowest = find_lowest(stack_a);
+            if (!lowest)
             {
                 ft_printf("Lowest number is not found.\n");
                 return ;
@@ -92,17 +100,17 @@ void case_4(t_size *s, t_stack **stack_a, t_stack **stack_b)
             int i = 0;
             while (temp)
             {
-                if (temp->data == lowest_first)
-                    lowest_first_idx = i;
+                if (temp->data == lowest)
+                    lowest_idx = i;
                 temp = temp->next;
                 i++;
             }
-            lowest_to_zero = find_lowest_to_zero(lowest_first_idx);
-            lowest_to_max = find_lowest_to_max(s, lowest_first_idx);
+            lowest_to_zero = find_lowest_to_zero(lowest_idx);
+            lowest_to_max = find_lowest_to_max(s, lowest_idx);
             if (lowest_to_zero > lowest_to_max)
-                reverse_rotate_idx(s, stack_a, lowest_first_idx);
+                reverse_rotate_idx(s, stack_a, lowest_idx);
             else
-                rotate_idx(stack_a, lowest_first_idx);
+                rotate_idx(stack_a, lowest_idx);
             push_b(s, stack_a, stack_b);
             j++;
         }
@@ -110,7 +118,7 @@ void case_4(t_size *s, t_stack **stack_a, t_stack **stack_b)
     }
     while (s->a_size > 0)
     {
-        int lowest = find_lowest_first(stack_a);
+        int lowest = find_lowest(stack_a);
         int i = 0;
         int idx = 0;
         temp = *stack_a;
