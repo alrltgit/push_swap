@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:58:14 by apple             #+#    #+#             */
-/*   Updated: 2025/03/23 21:33:07 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/23 22:27:04 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,11 +250,12 @@ void case_3(t_size *s, t_stack **stack_a, t_stack **stack_b)
     // t_stack *temp;
     int i = 0;
     // temp = *stack_a;
-    while (i < s->a_size - 1)
+    i = s->a_size;
+    while (i > 0)
     {
         find_cheapest_number(s, stack_a, stack_b);
-        i++;
-        // ft_printf("i: %d\n", i);
+        i--;
+        ft_printf("i: %d\n", i);
         // temp = temp->next;
     }
 }
