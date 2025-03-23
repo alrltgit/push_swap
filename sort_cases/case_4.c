@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 17:35:05 by apple             #+#    #+#             */
-/*   Updated: 2025/03/22 19:43:44 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/23 17:36:58 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,24 @@ int find_lowest(t_stack **stack_a)
     while (temp)
     {
         if (temp->data < hold_first)
+        {
+            hold_first = temp->data;
+        }
+        temp = temp->next;
+    }
+    return (hold_first);
+}
+
+int find_highest(t_stack **stack_a)
+{
+    t_stack *temp;
+    int hold_first;
+
+    temp = *stack_a;
+    hold_first = temp->data;
+    while (temp)
+    {
+        if (temp->data > hold_first)
         {
             hold_first = temp->data;
         }
