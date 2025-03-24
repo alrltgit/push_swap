@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:56:15 by apple             #+#    #+#             */
-/*   Updated: 2025/03/23 16:20:24 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/24 16:04:09 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,9 @@ int find_count_to_zero(t_stack **stack, int value)
 {
     t_stack *temp;
     int idx;
-    int size;
 
     temp = *stack;
     idx = 0;
-    size = count_stack_size(stack);
-    // ft_printf("stack_size: %d\n", size);
-
     while (temp)
     {
         if (temp->data == value)
@@ -94,17 +90,8 @@ int find_count_to_zero(t_stack **stack, int value)
         idx++;
     }
     // ft_printf("temp->data: %d\n", temp->data);
-    // ft_printf("idx1: %d\n", idx);
-    if (idx <= (size / 2))
-    {
-        // ft_printf("Number of ra: %d\n", idx);
-        return (idx);
-    }
-    else
-    {
-        // ft_printf("Number of rra: %d\n", size - idx);
-        return (size - idx);
-    }
+    // ft_printf("idx: %d\n", idx);
+    return (idx);
 }
 
 int find_count_to_max(t_size *s, int hold_second_idx)
