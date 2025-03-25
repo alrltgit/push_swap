@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:11:44 by apple             #+#    #+#             */
-/*   Updated: 2025/03/24 15:59:41 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/25 10:01:59 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+# include <stdbool.h>
 # include "libft/libft.h"
 
 typedef struct Node
@@ -22,6 +23,11 @@ typedef struct Node
     int data;
     struct Node *prev;
     struct Node *next;
+    struct Node *target;
+    int index;
+    int push_cost;
+    bool above_medium;
+    bool cheapest;
 }   t_stack;
 
 typedef struct stack_size
@@ -54,6 +60,7 @@ void	push_a(t_size *s, t_stack **stack_a, t_stack **stack_b);
 void	push_b(t_size *s, t_stack **stack_a, t_stack **stack_b);
 void	rotate_a(t_stack **stack_a);
 void	rotate_b(t_stack **stack_b);
+void    rr(t_stack **stack_a, t_stack **stack_b);
 void	reverse_rotate_a(t_stack **stack_a);
 void	reverse_rotate_b(t_stack **stack_b);
 void	rra_rrb(t_stack **stack_a, t_stack **stack_b);
@@ -66,6 +73,7 @@ void    case_1(t_stack **stack_a);
 void    case_2(t_size *s, t_stack **stack_a, t_stack **stack_b);
 void    case_3(t_size *s, t_stack **stack_a, t_stack **stack_b);
 void    case_4(t_size *s, t_stack **stack_a, t_stack **stack_b);
+void	sort_stack(t_size *s, t_stack **stack_a, t_stack **stack_b);
 
 int find_hold_first(t_stack **stack_a, int chunk_min, int chunk_max);
 int find_hold_second(t_stack **stack_a, int chunk_min, int chunk_max);
@@ -77,5 +85,7 @@ void reverse_rotate_idx(t_size *s, t_stack **stack_a, int idx);
 int find_lowest(t_stack **stack_a);
 int find_highest(t_stack **stack_a);
 void find_cheapest_number(t_size *s, t_stack **stack_a, t_stack **stack_b);
+
+void	sort_stack(t_size *s, t_stack **stack_a, t_stack **stack_b);
 
 #endif

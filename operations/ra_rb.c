@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:23:28 by apple             #+#    #+#             */
-/*   Updated: 2025/03/19 09:11:57 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/25 09:44:19 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,11 @@ void	rotate_b(t_stack **stack_b)
 	first->prev = last;
 	first->next = NULL;
 	ft_printf("rb\n");
+}
+
+void rr(t_stack **stack_a, t_stack **stack_b)
+{
+	rotate_a(stack_a);
+	rotate_b(stack_b);
+	ft_printf("rr\n");
 }
