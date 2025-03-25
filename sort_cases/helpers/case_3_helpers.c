@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:56:15 by apple             #+#    #+#             */
-/*   Updated: 2025/03/24 16:04:09 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/25 16:46:52 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,26 +109,22 @@ int find_count_to_max(t_size *s, int hold_second_idx)
     return (count_to_max);
 }
 
-void rotate_idx(t_stack **stack_a, int idx)
-{
-    int i;
-    
-    i = idx;
-    while (i > 0)
-    {
-        rotate_a(stack_a);
-        i--;
-    }
-}
+// void rotate_idx(t_size *s, t_stack **stack_a, t_stack **stack_b, t_stack *cheapest_num)
+// {
+//     int a_size = s->a_size;
+//     int b_size = s->b_size;
+// 	while (*stack_a != cheapest_num && *stack_b != cheapest_num->target)
+// 		rr(stack_a, stack_b);
+// 	find_idx(a_size, stack_a);
+// 	find_idx(b_size, stack_b);
+// }
 
-void reverse_rotate_idx(t_size *s, t_stack **stack_a, int idx)
-{
-    int i;
-
-    i = idx;
-    while (i < s->a_size)
-    {
-        reverse_rotate_a(stack_a);
-        i++;
-    }
-}
+// void reverse_rotate_idx(t_size *s, t_stack **stack_a, t_stack **stack_b, t_stack *cheapest_num)
+// {
+//     int a_size = s->a_size;
+//     int b_size = s->b_size;
+// 	while (*stack_a != cheapest_num && *stack_b != cheapest_num->target)
+// 		rra_rrb(stack_a, stack_b);
+// 	find_idx(a_size, stack_a);
+// 	find_idx(b_size, stack_b);
+// }

@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 09:02:46 by apple             #+#    #+#             */
-/*   Updated: 2025/03/25 10:06:05 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/25 16:44:55 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,7 +241,7 @@ void	check_top_nodes(t_stack **stack, t_stack *top, char name)
 			else
 				reverse_rotate_a(stack);
 		}
-		else if (name == 'b')
+		else if (name == 'a')
 		{
 			if (top->above_medium)
 				rotate_b(stack);
@@ -262,11 +262,11 @@ void	move_to_b(t_size *s, t_stack **stack_a, t_stack **stack_b)
 		&& !(best_to_move->target->above_medium))
 		rev_rotate_2(s, stack_a, stack_b, best_to_move);
 	check_top_nodes(stack_a, best_to_move, 'a');
-	check_top_nodes(stack_b, best_to_move->target, 'b');
+	check_top_nodes(stack_b, best_to_move->target, 'a');
 	push_b(s, stack_a, stack_b);
 }
 
-void	tiny_sort(t_stack **stack)
+void	small_stack_sort(t_stack **stack)
 {
 	t_stack	*max;
 
@@ -330,7 +330,7 @@ void	sort_stack(t_size *s, t_stack **stack_a, t_stack **stack_b)
 		get_stack_info(s, stack_a, stack_b);
 		move_to_b(s, stack_a, stack_b);
 	}
-    case_1(stack_a);
+	small_stack_sort(stack_a);
 	while (*stack_b)
 	{
 		move_back_b(s, stack_a, stack_b);
