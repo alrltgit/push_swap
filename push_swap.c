@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 20:51:55 by apple             #+#    #+#             */
-/*   Updated: 2025/03/25 13:31:04 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/26 15:28:35 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,15 @@ int main(int argc, char *argv[])
     }
     else
         sort(s, &stack_a, &stack_b);
-    // printf_stack(stack_a, stack_b);
+    printf_stack(stack_a, stack_b);
     // if (argv_is_sorted(stack_a))
     //     ft_printf("Stack_a is sorted.\n");
     // else
     //     ft_printf("Stack_a is not sorted.\n");
-    // if (stack_b_is_sorted(&stack_b))
-    //     ft_printf("Stack_b is sorted.\n");
-    // else
-    //     ft_printf("Stack_b is not sorted.\n");
+    if (stack_b_is_sorted(&stack_b))
+        ft_printf("Stack_b is sorted.\n");
+    else
+        ft_printf("Stack_b is not sorted.\n");
     free_stack(stack_a);
     return (0);
 }

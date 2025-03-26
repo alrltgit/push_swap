@@ -1,351 +1,334 @@
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        :::      ::::::::   */
-// /*   case_3.c                                           :+:      :+:    :+:   */
-// /*                                                    +:+ +:+         +:+     */
-// /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
-// /*                                                +#+#+#+#+#+   +#+           */
-// /*   Created: 2025/03/13 18:58:14 by apple             #+#    #+#             */
-// /*   Updated: 2025/03/25 16:43:55 by apple            ###   ########.fr       */
-// /*                                                                            */
-// /* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   case_3.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/13 18:58:14 by apple             #+#    #+#             */
+/*   Updated: 2025/03/26 17:39:29 by apple            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// #include "../push_swap.h"
+#include "../push_swap.h"
 
-// int stack_b_is_sorted(t_stack **stack)
-// {
-//     t_stack	*temp;
+int stack_b_is_sorted(t_stack **stack)
+{
+    t_stack	*temp;
 
-// 	temp = *stack;
-// 	while (temp && temp->next)
-// 	{
-// 		if (temp->data < temp->next->data)
-// 			return (0);
-// 		temp = temp->next;
-// 	}
-// 	return (1);
-// }
+	temp = *stack;
+	while (temp && temp->next)
+	{
+		if (temp->data < temp->next->data)
+			return (0);
+		temp = temp->next;
+	}
+	return (1);
+}
 
-// t_stack *find_max(t_stack **stack)
-// {
-//     t_stack *current;
-//     t_stack *max_node;
-//     int max;
+int find_max(t_stack **stack)
+{
+    t_stack *current;
+    int max;
 
-//     if (!stack || !(*stack))
-//         return (0);
+    if (!stack || !(*stack))
+        return (-2147483648);
 
-//     current = *stack;
-//     max = current->data;
-//     while (current)
-//     {
-//         if (current->data > max)
-//         {
-//             max = current->data;
-//             max_node = current;
-//         }
-//         current = current->next;
-//     }
-//     return (max_node);
-// }
+    current = *stack;
+    max = current->data;
 
-// t_stack *find_min(t_stack **stack)
-// {
-//     t_stack *current;
-//     t_stack *min_node;
-//     int min;
+    while (current)
+    {
+        if (current->data > max)
+            max = current->data;
+        current = current->next;
+    }
+    return max;
+}
 
-//     if (!stack || !(*stack))
-//         return (0);
-
-//     current = *stack;
-//     min = current->data;
-//     while (current)
-//     {
-//         if (current->data < min)
-//         {
-//             min = current->data;
-//             min_node = current;
-//         }
-//         current = current->next;
-//     }
-//     return (min_node);
-// }
-
-// void	place_min_on_top(t_stack **stack_a)
-// {
-// 	t_stack	*temp;
-
-// 	temp = find_min(stack_a);
-// 	while ((*stack_a)->data != temp->data)
-// 	{
-// 		if (temp->above_medium)
-// 			rotate_a(stack_a);
-// 		else
-// 			reverse_rotate_a(stack_a);
-// 	}
-// }
-
-// void	find_idx(int stack_size, t_stack **stack)
-// {
-// 	int		i;
-// 	int		medium;
-// 	t_stack	*temp;
-
-// 	i = 0;
-// 	temp = (*stack);
-// 	if (!temp)
-// 		return ;
-// 	medium = stack_size / 2;
-// 	while (temp)
-// 	{
-// 		temp->index = i;
-// 		if (i <= medium)
-// 		    temp->above_medium = true;
-// 		else
-// 			temp->above_medium = false;
-// 		temp = temp->next;
-// 		i++;
-// 	}
-// }
-
-// t_stack *find_cheapest_number(t_stack **stack)
-// {
-//     t_stack	*temp;
-
-// 	temp = *stack;
-// 	if (!temp)
-// 		return (NULL);
-// 	while (temp)
-// 	{
-// 		if (temp->cheapest)
-// 			return (temp);
-// 		temp = temp->next;
-// 	}
-// 	return (NULL);
-// }
-
-// void find_num_position(int size, t_stack **stack)
-// {
-//     int i = 0;
-//     int half_stack;
-//     t_stack *temp;
-
-//     temp = *stack;
-//     half_stack = size / 2;
-//     while (temp)
-//     {
-//         temp->idx = i;
-//         if (temp->idx <= half_stack)
-//             temp->above_half = true;
-//         else
-//             temp->above_half = false;
-//         temp = temp->next;
-//         i++;
-//     }
-// }
-
-// void find_num_stack_a(t_stack **stack_a, t_stack **stack_b)
-// {
-//     t_stack *temp_a;
-//     t_stack *temp_b;
-//     t_cost cheapest;
-//     t_stack *target;
-
-//     temp_a = *stack_a;
-//     while (temp_a)
-//     {
-//         cheapest.cost = INT_MAX;
-//         temp_b = *stack_b;
-//         while (temp_b)
-//         {
-//             if (temp_b->data < temp_a->data && temp_b->data > cheapest.cost)
-//             {
-//                 cheapest.cost = temp_b->data;
-//                 target = temp_b;
-//             }
-//             temp_b = temp_b->next;
-//         }
-//         if (cheapest.cost == INT_MAX)
-//             temp_a->target = find_max(stack_a);
-//         else
-//             temp_a->target = target;
-//         temp_a = temp_a->next;
-//     }
-// }
-
-// void	find_num_stack_b(t_stack **stack_a, t_stack **stack_b)
-// {
-// 	t_stack *temp_a;
-//     t_stack *temp_b;
-//     t_cost cheapest;
-//     t_stack *target;
-
-//     temp_b = *stack_b;
-//     while (temp_b)
-//     {
-//         cheapest.cost = INT_MAX;
-//         temp_a = *stack_a;
-//         while (temp_a)
-//         {
-//             if (temp_a->data < temp_b->data && temp_a->data > cheapest.cost)
-//             {
-//                 cheapest.cost = temp_b->data;
-//                 target = temp_a;
-//             }
-//             temp_a = temp_a->next;
-//         }
-//         if (cheapest.cost == INT_MAX)
-//             temp_b->target = find_min(stack_a);
-//         else
-//             temp_b->target = target;
-//         temp_b = temp_b->next;
-//     }
-// }
-
-// void count_num_cost_stack_a(t_size *s, t_stack **stack_a)
-// {
-// 	t_stack	*temp_a;
+int find_min_idx(t_stack **stack, int min_val)
+{
+    t_stack *current;
+    int idx;
     
-// 	temp_a = *stack_a;
-//     while (temp_a)
-// 	{
-// 		(temp_a)->push_cost = (temp_a)->index;
-// 		if (!(temp_a->above_medium))
-// 			temp_a->push_cost = s->a_size - (temp_a->index);
-// 		if (temp_a->target->above_medium)
-// 			temp_a->push_cost += temp_a->target->index;
-// 		else
-// 			temp_a->push_cost += s->b_size - (temp_a->target->index);
-// 		temp_a = temp_a->next;
-// 	}
-// }
+    idx = 0;
+    current = *stack;
+    while (current)
+    {
+        if (current->data == min_val)
+            break ;
+        idx++;
+    }
+    return (idx);
+}
 
-// void num_best_to_move(t_stack **stack)
-// {
-//     int	cheapest;
-// 	t_stack	*cheapest_move;
-// 	t_stack	*temp;
+int find_min(t_stack **stack)
+{
+    t_stack *current;
+    int min;
 
-// 	temp = *stack;
-// 	if (!temp)
-// 		return ;
-// 	cheapest = INT_MAX;
-// 	while (temp)
-// 	{
-// 		if (temp->push_cost < cheapest)
-// 		{
-// 			cheapest = temp->push_cost;
-// 			cheapest_move = temp;
-// 		}
-// 		temp = temp->next;
-// 	}
-// 	cheapest_move->cheapest = true;
-// }
+    if (!stack || !(*stack))
+        return (2147483647);
 
-// void	find_stack_info(t_size *s, t_stack **stack_a, t_stack **stack_b)
-// {
-//     int a_size = s->a_size;
-//     int b_size = s->b_size;
-// 	find_num_position(a_size, stack_a);
-// 	find_num_position(b_size, stack_b);
-// 	find_num_stack_a(stack_a, stack_b);
-// 	count_num_cost_stack_a(s, stack_a);
-// 	num_best_to_move(stack_a);
-// }
+    current = *stack;
+    min = current->data;
 
-// void	check_top_nodes(t_stack **stack, t_stack *top, char name)
-// {
-// 	// while (*stack != top)
-// 	// {
-// 		if (name == 'a')
-// 		{
-// 			if (top->above_half)
-// 				rotate_a(stack);
-// 			else
-// 				reverse_rotate_a(stack);
-// 		}
-// 		else if (name == 'b')
-// 		{
-// 			if (top->above_half)
-// 				rotate_b(stack);
-// 			else
-// 				reverse_rotate_b(stack);
-// 		}
-        
-// 	// }
-// }
+    while (current)
+    {
+        if (current->data < min)
+            min = current->data;
+        current = current->next;
+    }
+    return min;
+}
 
-// void push_to_b(t_size *s, t_stack **stack_a, t_stack **stack_b)
-// {
-//     t_stack *cheapest_num;
+int find_place_in_b(t_stack **stack_b, int num)
+{
+    t_stack *current;
+    int moves = 0;
 
-//     cheapest_num = find_cheapest_number(stack_a);
-//     if (cheapest_num->above_medium && cheapest_num->target->above_medium)
-// 		rotate_idx(s, stack_a, stack_b, cheapest_num);
-// 	else if (!(cheapest_num->above_medium) && !(cheapest_num->target->above_medium))
-// 		reverse_rotate_idx(s, stack_a, stack_b, cheapest_num);
-// 	// check_top_nodes(stack_a, cheapest_num, 'a');
-// 	check_top_nodes(stack_b, cheapest_num->target, 'b');
-// 	// push_b(s, stack_a, stack_b);
-// }
+    // if (!stack_b || !(*stack_b))
+    //     return 0;
+    
+    // ft_printf("in sort_stack_b:\n");
+    if (num > find_max(stack_b))
+    {
+        current = *stack_b;
+        // ft_printf("(num > find_max(stack_b): %d\n", current->data);
+        while (current && current->data != find_max(stack_b))
+        {
+            current = current->next;
+            moves++;
+        }
+        return (moves);
+    }
+    else if (num < find_min(stack_b))
+    {
+        current = *stack_b;
+        // ft_printf("num < find_min(stack_b): %d\n", current->data);
+        while (current && current->data != find_min(stack_b))
+        {
+            current = current->next;
+            moves++;
+        }
+        moves += 1;
+        return (moves);
+    }
+    else
+    {
+        current = *stack_b;
+        // ft_printf("current->data: %d\n", current->data);
+        while (current->next)
+        {
+            // ft_printf("sort_stack_b_current_data: %d\n", current->data);
+            // ft_printf("num: %d\n", num);
+            // ft_printf("current->next->data: %d\n", current->next->data);
+            if (num < current->data && num > current->next->data)
+                break;
+            current = current->next;
+            moves++;
+        }
+        return (moves += 1);
+    }
+    return (0);
+}
 
-// void	move_back_stack_b(t_size *s, t_stack **stack_a, t_stack **stack_b)
-// {
-//     int a_size = s->a_size;
-//     int b_size = s->b_size;
-// 	find_idx(a_size, stack_a);
-// 	find_idx(b_size, stack_b);
-// 	find_num_stack_b(stack_a, stack_b);
-// }
+int find_place_in_b_2(t_stack **stack_b, int num)
+{
+    t_stack *current;
+    int moves = 0;
 
-// void	move_to_stack_a(t_size *s, t_stack **stack_a, t_stack **stack_b)
-// {
-// 	check_top_nodes(stack_a, (*stack_b)->target, 'a');
-// 	push_a(s, stack_a, stack_b);
-// }
+    if (!stack_b || !(*stack_b))
+        return 0;
+    
+    current = *stack_b;
+    while (current->next)
+        current = current->next;
+    if (num > find_max(stack_b))
+    {
+        while (current && current->prev && current->data != find_max(stack_b))
+        {
+            current = current->prev;
+            moves++;
+        }
+        moves += 1;
+        return (moves);
+    }
+    current = *stack_b;
+    while (current->next)
+        current = current->next;
+    if (num < find_min(stack_b))
+    {
+        while (current && current->prev && current->data != find_min(stack_b))
+        {
+            current = current->prev;
+            moves++;
+        }
+        return (moves);
+    }
+    current = *stack_b;
+    while (current->next)
+        current = current->next;
+    while (current && current->prev)
+    {
+        if (num > current->data && num < current->prev->data)
+            break;
+        current = current->prev;
+        moves++;
+    }
+    return (moves + 1);
+}
 
-// void	small_stack_sort(t_stack **stack)
-// {
-// 	t_stack	*max;
+void sort_stack_b(t_size *s, t_stack **stack_a, t_stack **stack_b, t_cost cheapest)
+{
+    int moves;
 
-// 	if (*stack == NULL || (*stack)->next == NULL)
-// 		return ;
-// 	if ((*stack)->next->next == NULL)
-// 	{
-// 		if ((*stack)->data > (*stack)->next->data)
-// 			swap_a(stack);
-// 		return ;
-// 	}
-// 	max = find_max(stack);
-// 	if (*stack == max)
-// 		rotate_a(stack);
-// 	else if ((*stack)->next == max)
-// 		reverse_rotate_a(stack);
-// 	if ((*stack)->data > (*stack)->next->data)
-// 		swap_a(stack);
-// }
+    if (!stack_a || !stack_b)
+        return ;
+    (void)s;
+    if (cheapest.rb_moves <= cheapest.rrb_moves)
+        moves = cheapest.rb_moves;
+    else
+        moves = cheapest.rrb_moves;
+    // moves = cheapest.move_b;
+    if (moves < 0)
+        moves *= -1;
+    // ft_printf("moves: %d\n", moves);
+    if (cheapest.rb_moves <= cheapest.rrb_moves)
+    {
+        while (moves > 0)
+        {
+            rotate_b(stack_b);
+            moves--;
+        }
+    }
+    else
+    {
+        while (moves > 0)
+        {
+            reverse_rotate_b(stack_b);
+            moves--;
+        }
+    }
+}
 
-// void case_3(t_size *s, t_stack **stack_a, t_stack **stack_b)
-// {
-//     int	a_size;
+int count_moves_a(t_size *s, t_stack **stack_a, int data)
+{
+    int moves_a;
+    int ra;
+    int rra;
+    
+    ra = find_count_to_zero(stack_a, data);
+    rra = s->a_size - ra;
+    if (ra < rra)
+        moves_a = ra;
+    else
+        moves_a = rra;
+    return (moves_a);
+}
 
-// 	a_size = s->a_size;
-// 	if (a_size-- > 3 && !argv_is_sorted(*stack_a))
-// 		push_b(s, stack_a, stack_b);
-// 	if (a_size-- > 3 && !argv_is_sorted(*stack_a))
-// 		push_b(s, stack_a, stack_b);
-// 	// while (a_size-- > 3 && !argv_is_sorted(*stack_a))
-// 	// {
-// 		find_stack_info(s, stack_a, stack_b);
-// 		push_to_b(s, stack_a, stack_b);
-// 	// }
-// 	// small_stack_sort(stack_a);
-// 	// while (*stack_b)
-// 	// {
-// 	// 	move_back_stack_b(s, stack_a, stack_b);
-// 	// 	move_to_stack_a(s, stack_a, stack_b);
-// 	// }
-// 	// find_idx(a_size, stack_a);
-// 	// place_min_on_top(stack_a);
-// }
+int count_moves_b(t_size *s, t_stack **stack_b, int data)
+{
+    s->rb_moves = find_place_in_b(stack_b, data);
+    return (s->rb_moves);
+}
+
+void move_num_on_top(t_cost cheapest, t_size *s, t_stack **stack_a)
+{
+    if (cheapest.index <= (s->a_size / 2))
+    {
+        rotate_idx(stack_a, cheapest.index);
+    }
+    else
+        reverse_rotate_idx(s, stack_a, cheapest.index);
+}
+
+void final_rotate(t_stack **stack_b)
+{
+    int max_num = find_max(stack_b);
+    while ((*stack_b)->data != max_num)
+    {
+        rotate_b(stack_b);
+    }
+}
+
+void find_cheapest_number(t_size *s, t_stack **stack_a, t_stack **stack_b)
+{
+    t_stack *temp;
+    t_cost cheapest;
+    int moves_a;
+    // int moves_b;
+    int total_cost;
+
+    cheapest.cost = INT_MAX;
+    int i = 0;
+    temp = *stack_a;
+    while (temp)
+    {
+        // ft_printf("stack_size: %d\n", s->a_size);
+        if (!*stack_a)
+            return ;
+        moves_a = count_moves_a(s, stack_a, temp->data);
+        // moves_b = count_moves_b(s, stack_b, temp->data);
+        // ft_printf("stack_b in find_cheapest_number: \n");
+        // t_stack *current = *stack_b;
+        // while (current)
+        // {
+        //     ft_printf("%d ", current->data);
+        //     current = current->next;
+        // }
+        // ft_printf("\n");
+        s->rb_moves = count_moves_b(s, stack_b, temp->data);
+        if (s->b_size == 0)
+            s->rrb_moves = 0;
+        else
+            s->rrb_moves = s->b_size - s->rb_moves;
+        // ft_printf("temp->data: %d\n", temp->data);
+        // ft_printf("s->rb_moves: %d\n", s->rb_moves);
+        // ft_printf("s->rrb_moves: %d\n", s->rrb_moves);
+        if (s->rb_moves <= s->rrb_moves)
+            total_cost = s->rb_moves + moves_a;
+        else
+            total_cost = s->rrb_moves + moves_a;
+        // ft_printf("total_cost: %d\n", total_cost);
+        if (total_cost < cheapest.cost)
+        {
+            cheapest.index = i;
+            cheapest.cost = total_cost;
+            cheapest.move_a = moves_a;
+            cheapest.rb_moves = s->rb_moves;
+            cheapest.rrb_moves = s->rrb_moves;
+            // cheapest.move_b = moves_b;
+        }
+        i++;
+        temp = temp->next;
+    }
+    // ft_printf("cheapest.index: %d\n", cheapest.index);
+    // ft_printf("cheapest.move_a: %d\n", cheapest.move_a);
+    // ft_printf("cheapest.move_b: %d\n", cheapest.move_b);
+    move_num_on_top(cheapest, s, stack_a);
+    sort_stack_b(s, stack_a, stack_b, cheapest);
+    push_b(s, stack_a, stack_b);
+    final_rotate(stack_b);
+    // printf_stack(*stack_a, *stack_b);
+}
+
+void case_3(t_size *s, t_stack **stack_a, t_stack **stack_b)
+{
+    while (s->a_size > 0)
+    {
+        find_cheapest_number(s, stack_a, stack_b);
+    }
+    // ft_printf("in\n");
+    // case_1(stack_a);
+    // if (!stack_b_is_sorted(stack_b) && find_min_idx(stack_b, find_min(stack_b)) <= (s->b_size / 2))
+    // {
+    //     while (!stack_b_is_sorted(stack_b))
+    //         rotate_b(stack_b);
+    // }
+    // else if (!stack_b_is_sorted(stack_b) && find_min_idx(stack_b, find_min(stack_b)) > (s->b_size / 2))
+    // {
+    //      while (!stack_b_is_sorted(stack_b))
+    //         reverse_rotate_b(stack_b);
+    // }
+}

@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:11:44 by apple             #+#    #+#             */
-/*   Updated: 2025/03/25 16:11:31 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/26 16:29:04 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,14 @@ typedef struct Node
     int data;
     struct Node *prev;
     struct Node *next;
-    struct Node *target;
-    int index;
-    int idx;
-    int push_cost;
-    bool above_medium;
-    bool above_half;
-    bool cheapest;
 }   t_stack;
 
 typedef struct stack_size
 {
     int a_size;
     int b_size;
+    int rrb_moves;
+    int rb_moves;
 }   t_size;
 
 typedef struct s_cost
@@ -44,6 +39,8 @@ typedef struct s_cost
     int cost;
     int move_a;
     int move_b;
+    int rb_moves;
+    int rrb_moves;
 } t_cost;
 
 void printf_stack(t_stack *stack_a, t_stack *stack_b);
@@ -71,25 +68,25 @@ void	swap_b(t_stack **stack_b);
 void	sa_sb(t_stack **stack_a, t_stack **stack_b);
 void    sort(t_size *s, t_stack **stack_a, t_stack **stack_b);
 
-void	small_stack_sort(t_stack **stack);
+// void	small_stack_sort(t_stack **stack);
 
 void    case_1(t_stack **stack_a);
 void    case_2(t_size *s, t_stack **stack_a, t_stack **stack_b);
 void    case_3(t_size *s, t_stack **stack_a, t_stack **stack_b);
 void    case_4(t_size *s, t_stack **stack_a, t_stack **stack_b);
-void	sort_stack(t_size *s, t_stack **stack_a, t_stack **stack_b);
+// void	sort_stack(t_size *s, t_stack **stack_a, t_stack **stack_b);
 
 int find_hold_first(t_stack **stack_a, int chunk_min, int chunk_max);
 int find_hold_second(t_stack **stack_a, int chunk_min, int chunk_max);
 int find_count_to_zero(t_stack **stack, int value);
 int find_count_to_max(t_size *s, int hold_second_idx);
-void rotate_idx(t_size *s, t_stack **stack_a, t_stack **stack_b, t_stack *cheapest_num);
-void reverse_rotate_idx(t_size *s, t_stack **stack_a, t_stack **stack_b, t_stack *cheapest_num);
+void rotate_idx(t_stack **stack_a, int idx);
+void reverse_rotate_idx(t_size *s, t_stack **stack_a, int idx);
 
-int     find_lowest(t_stack **stack_a);
-int     find_highest(t_stack **stack_a);
-t_stack *find_cheapest_number(t_stack **stack);
-void	find_idx(int stack_size, t_stack **stack);
+// int     find_lowest(t_stack **stack_a);
+// int     find_highest(t_stack **stack_a);
+// t_stack *find_cheapest_number(t_stack **stack);
+// void	find_idx(int stack_size, t_stack **stack);
 
 void	sort_stack(t_size *s, t_stack **stack_a, t_stack **stack_b);
 
