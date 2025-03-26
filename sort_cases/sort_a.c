@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 22:32:20 by apple             #+#    #+#             */
-/*   Updated: 2025/03/27 00:04:31 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/27 00:13:46 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int find_place_in_a(t_stack **stack_a, int num)
         return 0;
     if (num > find_max(stack_a))
     {
-        // ft_printf("max: %d\n", )
         current = *stack_a;
         while (current && current->data != find_max(stack_a))
         {
@@ -32,26 +31,19 @@ int find_place_in_a(t_stack **stack_a, int num)
     }
     else if (num < find_min(stack_a))
     {
-        // ft_printf("find_min: %d\n", find_min(stack_a));
         current = *stack_a;
         while (current && current->data != find_min(stack_a))
         {
             current = current->next;
             moves++;
         }
-        // moves += 1;
-        // ft_printf("moves in sort: %d\n", moves);
         return (moves);
     }
     else
     {
         current = *stack_a;
-        // ft_printf("current->data: %d\n", current->data);
         while (current->next)
         {
-            // ft_printf("current->data: %d\n", current->data);
-            // ft_printf("num: %d\n", num);
-            // ft_printf("current->next->data: %d\n", current->next->data);
             if (num > current->data && num < current->next->data)
                 break;
             current = current->next;
@@ -136,21 +128,16 @@ void find_cheapest_number_a(t_size *s, t_stack **stack_a, t_stack **stack_b)
     {
         if (!*stack_b)
             return ;
-        // ft_printf("temp->data: %d\n", temp->data);
         moves_b = count_moves_stack_b(s, stack_b, temp->data);
-        // ft_printf("moves_b: %d\n", moves_b);
         s->ra_moves = count_moves_stack_a(s, stack_a, temp->data);
-        // ft_printf("s->ra_moves: %d\n", s->ra_moves);
         if (s->a_size == 0)
             s->rra_moves = 0;
         else
             s->rra_moves = s->a_size - s->ra_moves;
-        // ft_printf("s->rra_moves: %d\n", s->rra_moves);
         if (s->ra_moves <= s->rra_moves)
             total_cost = s->ra_moves + moves_b;
         else
             total_cost = s->rra_moves + moves_b;
-        // ft_printf("total_cost: %d\n", total_cost);
         if (total_cost < cheapest_a.cost)
         {
             cheapest_a.index = i;
