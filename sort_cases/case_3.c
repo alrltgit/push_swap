@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:58:14 by apple             #+#    #+#             */
-/*   Updated: 2025/03/26 18:07:46 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/26 19:55:39 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,10 +264,18 @@ void final_rotate(t_size *s, t_stack **stack_b)
 void push_to_stack_a(t_size *s, t_stack **stack_a, t_stack **stack_b)
 {
     while (s->b_size > 0)
-    {
         push_a(s, stack_a, stack_b);
-    }
 }
+
+// void	rotate_2(t_size *s, t_stack **stack_a, t_stack **stack_b, t_stack *best_to_move)
+// {
+//     int a_size = s->a_size;
+//     int b_size = s->b_size;
+// 	while (*stack_a != best_to_move && *stack_b != best_to_move->target)
+// 		rr(stack_a, stack_b);
+// 	assign_index(a_size, stack_a);
+// 	assign_index(b_size, stack_b);
+// }
 
 void find_cheapest_number(t_size *s, t_stack **stack_a, t_stack **stack_b)
 {
@@ -313,9 +321,7 @@ void find_cheapest_number(t_size *s, t_stack **stack_a, t_stack **stack_b)
 void case_3(t_size *s, t_stack **stack_a, t_stack **stack_b)
 {
     while (s->a_size > 0)
-    {
         find_cheapest_number(s, stack_a, stack_b);
-    }
     final_rotate(s, stack_b);
     push_to_stack_a(s, stack_a, stack_b);
 }

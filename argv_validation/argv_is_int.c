@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:51:21 by apple             #+#    #+#             */
-/*   Updated: 2025/03/18 22:37:25 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/26 21:37:45 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static int	is_valid_num(char *str)
 	return (1);
 }
 
-int	argv_is_int(int argc, char *argv[])
+int	argv_is_int(int count, char **args)
 {
 	int	j;
 
-	j = 1;
-	while (j < argc)
+	j = 0;
+	while (j < count)
 	{
-		if (!is_valid_num(argv[j]))
+		if (!is_valid_num(args[j]))
 			return (0);
 		j++;
 	}

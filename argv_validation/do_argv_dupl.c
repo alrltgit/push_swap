@@ -6,25 +6,27 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:54:41 by apple             #+#    #+#             */
-/*   Updated: 2025/03/18 22:42:27 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/26 21:36:40 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	do_argvs_duplicate(int argc, char *argv[])
+int	do_argvs_duplicate(int count, char **args)
 {
-	int i, k;
+	int i;
+	int k;
 	int num1, num2;
 
-	i = 1;
-	while (i < argc)
+	k = 0;
+	i = 0;
+	while (i < count)
 	{
-		num1 = ft_atoi(argv[i], NULL); // Convert to int
+		num1 = ft_atoi(args[i], NULL);
 		k = i + 1;
-		while (k < argc)
+		while (k < count)
 		{
-			num2 = ft_atoi(argv[k], NULL);
+			num2 = ft_atoi(args[k], NULL);
 			if (num1 == num2)
 				return (0);
 			k++;
