@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:56:15 by apple             #+#    #+#             */
-/*   Updated: 2025/03/26 12:06:05 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/26 21:46:11 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,6 @@ int find_hold_second(t_stack **stack_a, int chunk_min, int chunk_max)
     return(hold_second);
 }
 
-// int find_count_to_zero(int hold_first_idx)
-// {
-//     int count_to_zero;
-    
-//     count_to_zero = 0;
-//     while (count_to_zero < hold_first_idx)
-//         count_to_zero++;
-//     return (count_to_zero);
-// }
-
 int find_count_to_zero(t_stack **stack, int value)
 {
     t_stack *temp;
@@ -89,8 +79,6 @@ int find_count_to_zero(t_stack **stack, int value)
         temp = temp->next;
         idx++;
     }
-    // ft_printf("temp->data: %d\n", temp->data);
-    // ft_printf("idx: %d\n", idx);
     return (idx);
 }
 

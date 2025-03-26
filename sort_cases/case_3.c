@@ -6,11 +6,11 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:58:14 by apple             #+#    #+#             */
-/*   Updated: 2025/03/26 19:55:39 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/27 00:04:49 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+# include "../push_swap.h"
 
 int stack_b_is_sorted(t_stack **stack)
 {
@@ -46,21 +46,21 @@ int find_max(t_stack **stack)
     return (max);
 }
 
-int find_min_idx(t_stack **stack, int min_val)
-{
-    t_stack *current;
-    int idx;
+// int find_min_idx(t_stack **stack, int min_val)
+// {
+//     t_stack *current;
+//     int idx;
     
-    idx = 0;
-    current = *stack;
-    while (current)
-    {
-        if (current->data == min_val)
-            break ;
-        idx++;
-    }
-    return (idx);
-}
+//     idx = 0;
+//     current = *stack;
+//     while (current)
+//     {
+//         if (current->data == min_val)
+//             break ;
+//         idx++;
+//     }
+//     return (idx);
+// }
 
 int find_min(t_stack **stack)
 {
@@ -125,52 +125,6 @@ int find_place_in_b(t_stack **stack_b, int num)
     return (0);
 }
 
-int find_place_in_b_2(t_stack **stack_b, int num)
-{
-    t_stack *current;
-    int moves = 0;
-
-    if (!stack_b || !(*stack_b))
-        return 0;
-    
-    current = *stack_b;
-    while (current->next)
-        current = current->next;
-    if (num > find_max(stack_b))
-    {
-        while (current && current->prev && current->data != find_max(stack_b))
-        {
-            current = current->prev;
-            moves++;
-        }
-        moves += 1;
-        return (moves);
-    }
-    current = *stack_b;
-    while (current->next)
-        current = current->next;
-    if (num < find_min(stack_b))
-    {
-        while (current && current->prev && current->data != find_min(stack_b))
-        {
-            current = current->prev;
-            moves++;
-        }
-        return (moves);
-    }
-    current = *stack_b;
-    while (current->next)
-        current = current->next;
-    while (current && current->prev)
-    {
-        if (num > current->data && num < current->prev->data)
-            break;
-        current = current->prev;
-        moves++;
-    }
-    return (moves + 1);
-}
-
 void sort_stack_b(t_size *s, t_stack **stack_a, t_stack **stack_b, t_cost cheapest)
 {
     int moves;
@@ -231,33 +185,33 @@ void move_num_on_top(t_cost cheapest, t_size *s, t_stack **stack_a)
         reverse_rotate_idx(s, stack_a, cheapest.index);
 }
 
-void final_rotate(t_size *s, t_stack **stack_b)
+void final_rotate(t_size *s, t_stack **stack_a)
 {
-    int max_num;
+    int max_min;
     int max_idx;
     t_stack *temp;
 
-    max_num = find_max(stack_b);
-    temp = *stack_b;
+    max_min = find_min(stack_a);
+    temp = *stack_a;
     max_idx = 0;
     while (temp)
     {
-        if (temp->data == max_num)
+        if (temp->data == max_min)
             break ;
         max_idx++;
         temp = temp->next;
     }
-    s->rb_moves = max_idx;
-    s->rrb_moves = s->b_size - s->rb_moves;
-    if (s->rb_moves <= s->rrb_moves)
+    s->ra_moves = max_idx;
+    s->rra_moves = s->a_size - s->ra_moves;
+    if (s->ra_moves <= s->rra_moves)
     {
-        while ((*stack_b)->data != max_num)
-            rotate_b(stack_b);
+        while ((*stack_a)->data != max_min)
+            rotate_a(stack_a);
     }
     else
     {
-        while ((*stack_b)->data != max_num)
-            reverse_rotate_b(stack_b);
+        while ((*stack_a)->data != max_min)
+            reverse_rotate_a(stack_a);
     }
 }
 
@@ -315,13 +269,16 @@ void find_cheapest_number(t_size *s, t_stack **stack_a, t_stack **stack_b)
     move_num_on_top(cheapest, s, stack_a);
     sort_stack_b(s, stack_a, stack_b, cheapest);
     push_b(s, stack_a, stack_b);
+    case_1(stack_a);
     // printf_stack(*stack_a, *stack_b);
 }
 
 void case_3(t_size *s, t_stack **stack_a, t_stack **stack_b)
 {
-    while (s->a_size > 0)
+    while (s->a_size > 3)
         find_cheapest_number(s, stack_a, stack_b);
-    final_rotate(s, stack_b);
-    push_to_stack_a(s, stack_a, stack_b);
+    while (s->b_size > 0)
+        find_cheapest_number_a(s, stack_a, stack_b);
+    final_rotate(s, stack_a);
+    // push_to_stack_a(s, stack_a, stack_b);
 }

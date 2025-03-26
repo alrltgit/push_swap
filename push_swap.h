@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:11:44 by apple             #+#    #+#             */
-/*   Updated: 2025/03/26 16:29:04 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/26 23:02:23 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct stack_size
     int b_size;
     int rrb_moves;
     int rb_moves;
+    int ra_moves;
+    int rra_moves;
 }   t_size;
 
 typedef struct s_cost
@@ -41,6 +43,8 @@ typedef struct s_cost
     int move_b;
     int rb_moves;
     int rrb_moves;
+    int ra_moves;
+    int rra_moves;
 } t_cost;
 
 void printf_stack(t_stack *stack_a, t_stack *stack_b);
@@ -88,6 +92,10 @@ void reverse_rotate_idx(t_size *s, t_stack **stack_a, int idx);
 // t_stack *find_cheapest_number(t_stack **stack);
 // void	find_idx(int stack_size, t_stack **stack);
 
-void	sort_stack(t_size *s, t_stack **stack_a, t_stack **stack_b);
+// void	sort_stack(t_size *s, t_stack **stack_a, t_stack **stack_b);
+void find_cheapest_number_a(t_size *s, t_stack **stack_a, t_stack **stack_b);
+int find_min(t_stack **stack);
+int find_max(t_stack **stack);
+void move_num_on_top(t_cost cheapest, t_size *s, t_stack **stack_a);
 
 #endif
