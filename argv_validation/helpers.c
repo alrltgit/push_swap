@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 09:47:41 by apple             #+#    #+#             */
-/*   Updated: 2025/03/27 09:48:49 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/27 15:10:23 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,23 @@ void	check_error_flag(t_stack *stack, int error_flag)
 	}
 }
 
-void if_valid_sort(t_size *s, char **args, t_stack *stack_a, t_stack *stack_b)
+void	if_valid_sort(t_size *s, char **args,
+		t_stack *stack_a, t_stack *stack_b)
 {
-    if (!argv_is_valid(s->count, args))
-    {
-        ft_printf("Error.\n");
-        free(args);
-        free_stack(stack_a);
-        exit(1);
-    }
-    if (argv_is_sorted(stack_a))
-    {
-        ft_printf("Error.\n");
-        free(args);
-        free_stack(stack_a);
-        exit(1);
-    }
-    else
-        sort(s, &stack_a, &stack_b);
+	if (!argv_is_valid(s->count, args))
+	{
+		ft_printf("Error.\n");
+		free(args);
+		free_stack(stack_a);
+		exit(1);
+	}
+	if (argv_is_sorted(stack_a))
+	{
+		ft_printf("Error.\n");
+		free(args);
+		free_stack(stack_a);
+		exit(1);
+	}
+	else
+		sort(s, &stack_a, &stack_b);
 }

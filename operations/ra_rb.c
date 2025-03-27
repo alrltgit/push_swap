@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:23:28 by apple             #+#    #+#             */
-/*   Updated: 2025/03/25 09:44:19 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/27 15:20:41 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	rotate_a(t_stack **stack_a)
 {
-	t_stack *first;
-	t_stack *last;
+	t_stack	*first;
+	t_stack	*last;
 
 	if (!stack_a || !*stack_a || !(*stack_a)->next)
 		return ;
@@ -33,8 +33,8 @@ void	rotate_a(t_stack **stack_a)
 
 void	rotate_b(t_stack **stack_b)
 {
-	t_stack *first;
-	t_stack *last;
+	t_stack	*first;
+	t_stack	*last;
 
 	if (!stack_b || !*stack_b || !(*stack_b)->next)
 		return ;
@@ -50,7 +50,7 @@ void	rotate_b(t_stack **stack_b)
 	ft_printf("rb\n");
 }
 
-void rr(t_stack **stack_a, t_stack **stack_b)
+void	rr(t_stack **stack_a, t_stack **stack_b)
 {
 	rotate_a(stack_a);
 	rotate_b(stack_b);

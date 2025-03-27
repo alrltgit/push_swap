@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:54:41 by apple             #+#    #+#             */
-/*   Updated: 2025/03/26 21:36:40 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/27 15:11:08 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	do_argvs_duplicate(int count, char **args)
 {
-	int i;
-	int k;
-	int num1, num2;
+	int	i;
+	int	k;
+	int	num1;
+	int	num2;
 
 	k = 0;
 	i = 0;

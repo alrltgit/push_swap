@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:11:44 by apple             #+#    #+#             */
-/*   Updated: 2025/03/27 14:32:52 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/27 15:27:42 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,11 @@ typedef struct s_cost
 } t_cost;
 
 void printf_stack(t_stack *stack_a, t_stack *stack_b);
-int stack_b_is_sorted(t_stack **stack);
+// int stack_b_is_sorted(t_stack **stack);
 
 t_stack	*ft_new(int data);
 t_stack	*ft_add_back(t_stack **head, int data);
 void    free_stack(t_stack *stack);
-size_t count_stack_size(t_stack **stack);
 
 int	argv_is_valid(int count, char **args);
 void	check_error_flag(t_stack *stack, int error_flag);

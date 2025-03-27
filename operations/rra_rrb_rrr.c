@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 18:00:40 by apple             #+#    #+#             */
-/*   Updated: 2025/03/19 09:19:10 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/27 15:22:02 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	reverse_rotate_a(t_stack **stack_a)
 {
-	t_stack *last;
-	t_stack *second_last;
+	t_stack	*last;
+	t_stack	*second_last;
 
-	if (!stack_a || !*stack_a || !(*stack_a) ->next)
+	if (!stack_a || !*stack_a || !(*stack_a)->next)
 		return ;
 	last = *stack_a;
 	while (last->next)
@@ -33,10 +33,10 @@ void	reverse_rotate_a(t_stack **stack_a)
 
 void	reverse_rotate_b(t_stack **stack_b)
 {
-	t_stack *last;
-	t_stack *second_last;
+	t_stack	*last;
+	t_stack	*second_last;
 
-	if (!stack_b || !*stack_b || !(*stack_b) ->next)
+	if (!stack_b || !*stack_b || !(*stack_b)->next)
 		return ;
 	last = *stack_b;
 	while (last->next)

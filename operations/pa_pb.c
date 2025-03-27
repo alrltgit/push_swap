@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:54:52 by apple             #+#    #+#             */
-/*   Updated: 2025/03/21 11:44:36 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/27 15:19:28 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	push_a(t_size *s, t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *temp;
+	t_stack	*temp;
 
 	if (!stack_b || !*stack_b)
 		return ;
@@ -33,7 +33,7 @@ void	push_a(t_size *s, t_stack **stack_a, t_stack **stack_b)
 
 void	push_b(t_size *s, t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *temp;
+	t_stack	*temp;
 
 	if (!stack_a || !*stack_a)
 		return ;

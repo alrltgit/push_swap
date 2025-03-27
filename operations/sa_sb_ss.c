@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:49:46 by apple             #+#    #+#             */
-/*   Updated: 2025/03/19 09:31:27 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/27 15:23:46 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	swap_a(t_stack **stack_a)
 {
-	t_stack *first;
-	t_stack *second;
-	int temp;
+	t_stack	*first;
+	t_stack	*second;
+	int		temp;
 
 	if (!stack_a || !*stack_a || !(*stack_a)->next)
 		return ;
@@ -30,9 +30,9 @@ void	swap_a(t_stack **stack_a)
 
 void	swap_b(t_stack **stack_b)
 {
-	t_stack *first;
-	t_stack *second;
-	int temp;
+	t_stack	*first;
+	t_stack	*second;
+	int		temp;
 
 	if (!stack_b || !*stack_b || !(*stack_b)->next)
 		return ;
