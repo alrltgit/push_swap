@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
-void sort(t_size *s, t_stack **stack_a, t_stack **stack_b)
+void	sort(t_size *s, t_stack **stack_a, t_stack **stack_b)
 {
-    if (s->a_size == 2)
-        swap_a(stack_a);
-    else if (s->a_size > 2 && s->a_size < 5)
-        case_1(stack_a);
-    else if (s->a_size >= 5)
-        case_2(s, stack_a, stack_b);
+	if (s->a_size == 2)
+		swap_a(stack_a);
+	else if (s->a_size > 2 && s->a_size < 5)
+		case_1(stack_a);
+	else if (s->a_size >= 5)
+		case_2(s, stack_a, stack_b);
 }

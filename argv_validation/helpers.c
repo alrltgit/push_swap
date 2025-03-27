@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 09:47:41 by apple             #+#    #+#             */
-/*   Updated: 2025/03/27 15:10:23 by alraltse         ###   ########.fr       */
+/*   Updated: 2025/03/27 21:52:53 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	check_error_flag(t_stack *stack, int error_flag)
 {
 	if (error_flag)
 	{
-		ft_printf("Error.\n");
+		ft_printf("Error\n");
 		free_stack(stack);
 		exit(1);
 	}
@@ -34,17 +34,14 @@ void	if_valid_sort(t_size *s, char **args,
 {
 	if (!argv_is_valid(s->count, args))
 	{
-		ft_printf("Error.\n");
-		free(args);
+		ft_printf("Error\n");
 		free_stack(stack_a);
 		exit(1);
 	}
 	if (argv_is_sorted(stack_a))
 	{
-		ft_printf("Error.\n");
-		free(args);
 		free_stack(stack_a);
-		exit(1);
+		exit(0);
 	}
 	else
 		sort(s, &stack_a, &stack_b);
