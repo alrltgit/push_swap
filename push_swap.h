@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:11:44 by apple             #+#    #+#             */
-/*   Updated: 2025/03/26 23:02:23 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/27 14:32:52 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,14 @@ typedef struct stack_size
 {
     int a_size;
     int b_size;
+    int count;
     int rrb_moves;
     int rb_moves;
     int ra_moves;
     int rra_moves;
+    int moves_a;
+    int moves_b;
+    int idx;
 }   t_size;
 
 typedef struct s_cost
@@ -52,11 +56,14 @@ int stack_b_is_sorted(t_stack **stack);
 
 t_stack	*ft_new(int data);
 t_stack	*ft_add_back(t_stack **head, int data);
-void free_stack(t_stack *stack);
+void    free_stack(t_stack *stack);
 size_t count_stack_size(t_stack **stack);
 
-int	argv_is_int(int argc, char *argv[]);
-int	do_argvs_duplicate(int argc, char *argv[]);
+int	argv_is_valid(int count, char **args);
+void	check_error_flag(t_stack *stack, int error_flag);
+void    if_valid_sort(t_size *s, char **args, t_stack *stack_a, t_stack *stack_b);
+int	argv_is_int(int count, char **args);
+int	do_argvs_duplicate(int count, char **args);
 int	argv_is_sorted(t_stack *stack);
 
 void	push_a(t_size *s, t_stack **stack_a, t_stack **stack_b);
@@ -72,13 +79,31 @@ void	swap_b(t_stack **stack_b);
 void	sa_sb(t_stack **stack_a, t_stack **stack_b);
 void    sort(t_size *s, t_stack **stack_a, t_stack **stack_b);
 
-// void	small_stack_sort(t_stack **stack);
-
 void    case_1(t_stack **stack_a);
 void    case_2(t_size *s, t_stack **stack_a, t_stack **stack_b);
-void    case_3(t_size *s, t_stack **stack_a, t_stack **stack_b);
-void    case_4(t_size *s, t_stack **stack_a, t_stack **stack_b);
-// void	sort_stack(t_size *s, t_stack **stack_a, t_stack **stack_b);
+
+int count_moves_a(t_size *s, t_stack **stack_a, int data);
+int count_moves_b(t_size *s, t_stack **stack_b, int data);
+void move_num_on_top(t_cost *cheapest, t_size *s, t_stack **stack_a);
+int find_place_in_b(t_stack **stack_b, int num);
+void push_to_stack_a(t_size *s, t_stack **stack_a, t_stack **stack_b);
+int find_max(t_stack **stack);
+int find_min(t_stack **stack);
+int count_total_cost(t_size *s, t_stack **stack_a, t_stack **stack_b, int data);
+
+int count_moves_stack_b(t_size *s, t_stack **stack_b, int data);
+int count_moves_stack_a(t_size *s, t_stack **stack_a, int data);
+void move_num_b_on_top(t_cost *cheapest, t_size *s, t_stack **stack_b);
+int find_place_in_a(t_stack **stack_a, int num);
+void rotate_stack_a_2(t_cost *cheapest, t_stack **stack_a, int moves);
+int rotate_to_max_2(t_stack **stack_a, int moves);
+int rotate_to_min_2(t_stack **stack_a, int moves);
+
+void rotate_stack_a(t_size *s, t_stack **stack_a, int max_min);
+void rotate_stack_b(t_cost *cheapest, t_stack **stack_b, int moves);
+int rotate_to_max(t_stack **stack_b, int moves);
+int rotate_to_min(t_stack **stack_b, int moves);
+void final_rotate(t_size *s, t_stack **stack_a);
 
 int find_hold_first(t_stack **stack_a, int chunk_min, int chunk_max);
 int find_hold_second(t_stack **stack_a, int chunk_min, int chunk_max);
@@ -87,15 +112,9 @@ int find_count_to_max(t_size *s, int hold_second_idx);
 void rotate_idx(t_stack **stack_a, int idx);
 void reverse_rotate_idx(t_size *s, t_stack **stack_a, int idx);
 
-// int     find_lowest(t_stack **stack_a);
-// int     find_highest(t_stack **stack_a);
-// t_stack *find_cheapest_number(t_stack **stack);
-// void	find_idx(int stack_size, t_stack **stack);
-
-// void	sort_stack(t_size *s, t_stack **stack_a, t_stack **stack_b);
 void find_cheapest_number_a(t_size *s, t_stack **stack_a, t_stack **stack_b);
 int find_min(t_stack **stack);
 int find_max(t_stack **stack);
-void move_num_on_top(t_cost cheapest, t_size *s, t_stack **stack_a);
+void move_num_on_top(t_cost *cheapest, t_size *s, t_stack **stack_a);
 
 #endif

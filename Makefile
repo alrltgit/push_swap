@@ -6,7 +6,7 @@
 #    By: apple <apple@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/03 13:11:36 by apple             #+#    #+#              #
-#    Updated: 2025/03/27 00:20:51 by apple            ###   ########.fr        #
+#    Updated: 2025/03/27 14:27:27 by apple            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ fulfil_list.c \
 argv_validation/argv_is_int.c \
 argv_validation/do_argv_dupl.c \
 argv_validation/argv_is_sorted.c \
+argv_validation/helpers.c \
 operations/sa_sb_ss.c \
 operations/pa_pb.c \
 operations/ra_rb.c \
@@ -29,6 +30,11 @@ operations/helpers/helpers.c \
 sort_cases/case_1.c \
 sort_cases/case_2.c \
 sort_cases/sort_a.c \
+sort_cases/helpers/case_2_helpers.c \
+sort_cases/helpers/case_2_utils.c \
+sort_cases/helpers/helpers.c \
+sort_cases/helpers/sort_a_helpers.c \
+sort_cases/helpers/sort_a_utils.c \
 sort_cases/helpers/case_3_helpers.c \
 sort.c
 
