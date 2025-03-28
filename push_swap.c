@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 20:51:55 by apple             #+#    #+#             */
-/*   Updated: 2025/03/28 07:26:30 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/28 13:42:11 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static t_stack	*create_stack_a(t_size *s, char **args)
 	while (i < s->count)
 	{
 		ft_add_back(&stack_a, ft_atoi(args[i], &error_flag));
-		check_error_flag(s, stack_a, error_flag);
+		check_error_flag(s, args, stack_a, error_flag);
 		i++;
 	}
 	return (stack_a);
@@ -94,12 +94,9 @@ int	main(int argc, char **argv)
 	args = split_str(s, argc, argv);
 	s->a_size = s->count;
 	s->b_size = 0;
+	s->argc = argc;
 	stack_b = NULL;
 	stack_a = create_stack_a(s, args);
 	if_valid_sort(s, args, stack_a, stack_b);
-	if (argc == 2)
-		free(args);
-	free_stack(stack_a);
-	free(s);
 	return (0);
 }

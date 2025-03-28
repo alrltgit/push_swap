@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:11:44 by apple             #+#    #+#             */
-/*   Updated: 2025/03/28 07:26:41 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/28 13:52:28 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct stack_size
 	int	moves_a;
 	int	moves_b;
 	int	idx;
+	int	argc;
 }	t_size;
 
 typedef struct s_cost
@@ -51,15 +52,14 @@ typedef struct s_cost
 	int	rra_moves;
 }	t_cost;
 
-void	printf_stack(t_stack *stack_a, t_stack *stack_b);
-// int stack_b_is_sorted(t_stack **stack);
-
 t_stack	*ft_new(int data);
 t_stack	*ft_add_back(t_stack **head, int data);
-void	free_stack(t_stack *stack);
+void	free_stack(t_stack **stack);
+void	free_char(char **args);
 
 int		argv_is_valid(int count, char **args);
-void	check_error_flag(t_size *s, t_stack *stack, int error_flag);
+void	check_error_flag(t_size *s, char **args,
+			t_stack *stack, int error_flag);
 void	if_valid_sort(t_size *s, char **args,
 			t_stack *stack_a, t_stack *stack_b);
 int		argv_is_int(int count, char **args);

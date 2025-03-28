@@ -3,23 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   fulfil_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
+/*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 20:30:36 by apple             #+#    #+#             */
-/*   Updated: 2025/03/27 15:13:12 by alraltse         ###   ########.fr       */
+/*   Updated: 2025/03/28 13:49:52 by alraltse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_stack(t_stack *stack)
+void	free_char(char **args)
+{
+	int	i;
+
+	i = 0;
+	while (args[i])
+	{
+		free(args[i]);
+		i++;
+	}
+	free(args);
+}
+
+void	free_stack(t_stack **stack)
 {
 	t_stack	*temp;
 
-	while (stack)
+	while (*stack)
 	{
-		temp = stack;
-		stack = stack->next;
+		temp = *stack;
+		*stack = (*stack)->next;
 		free(temp);
 	}
 }
