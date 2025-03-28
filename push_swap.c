@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 20:51:55 by apple             #+#    #+#             */
-/*   Updated: 2025/03/27 22:00:50 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/28 07:26:30 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static t_stack	*create_stack_a(t_size *s, char **args)
 	while (i < s->count)
 	{
 		ft_add_back(&stack_a, ft_atoi(args[i], &error_flag));
-		check_error_flag(stack_a, error_flag);
+		check_error_flag(s, stack_a, error_flag);
 		i++;
 	}
 	return (stack_a);
@@ -100,5 +100,6 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 		free(args);
 	free_stack(stack_a);
+	free(s);
 	return (0);
 }

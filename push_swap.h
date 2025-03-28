@@ -6,7 +6,7 @@
 /*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:11:44 by apple             #+#    #+#             */
-/*   Updated: 2025/03/27 21:22:16 by apple            ###   ########.fr       */
+/*   Updated: 2025/03/28 07:26:41 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_stack	*ft_add_back(t_stack **head, int data);
 void	free_stack(t_stack *stack);
 
 int		argv_is_valid(int count, char **args);
-void	check_error_flag(t_stack *stack, int error_flag);
+void	check_error_flag(t_size *s, t_stack *stack, int error_flag);
 void	if_valid_sort(t_size *s, char **args,
 			t_stack *stack_a, t_stack *stack_b);
 int		argv_is_int(int count, char **args);
