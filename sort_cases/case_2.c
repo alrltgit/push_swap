@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   case_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:58:14 by apple             #+#    #+#             */
-/*   Updated: 2025/03/28 13:27:50 by alraltse         ###   ########.fr       */
+/*   Updated: 2025/03/28 22:52:54 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-// int stack_b_is_sorted(t_stack **stack)
-// {
-//     t_stack	*temp;
-
-// 	temp = *stack;
-// 	while (temp && temp->next)
-// 	{
-// 		if (temp->data < temp->next->data)
-// 			return (0);
-// 		temp = temp->next;
-// 	}
-// 	return (1);
-// }
 
 int	find_place_in_b(t_stack **stack_b, int num)
 {

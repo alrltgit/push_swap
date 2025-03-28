@@ -3,45 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alraltse <alraltse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apple <apple@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 20:51:55 by apple             #+#    #+#             */
-/*   Updated: 2025/03/28 13:42:11 by alraltse         ###   ########.fr       */
+/*   Updated: 2025/03/28 22:52:44 by apple            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// void	printf_stack(t_stack *stack_a, t_stack *stack_b)
-// {
-// 	t_stack	*temp;
-
-// 	temp = stack_a;
-//     ft_printf("stack_a: \n");
-//     while (temp)
-//     {
-//         ft_printf("%d ", temp->data);
-//         temp = temp->next;
-//     }
-//     ft_printf("\n");
-//     ft_printf("stack_b: \n");
-//     temp = stack_b;
-//     while (temp)
-//     {
-//         ft_printf("%d ", temp->data);
-//         temp = temp->next;
-//     }
-//     // printf_stack(stack_a, stack_b);
-//     // if (argv_is_sorted(stack_a))
-//     //     ft_printf("Stack_a is sorted.\n");
-//     // else
-//     //     ft_printf("Stack_a is not sorted.\n");
-//     // if (stack_b_is_sorted(&stack_b))
-//     //     ft_printf("Stack_b is sorted.\n");
-//     // else
-//     //     ft_printf("Stack_b is not sorted.\n");
-//     ft_printf("\n");
-// }
 
 static char	**split_str(t_size *s, int argc, char **argv)
 {
